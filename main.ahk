@@ -27,7 +27,9 @@ LoadConfig()
 
 A_TrayMenu.Delete()
 A_TrayMenu.Add("Open Configurator", OpenConfigurator)
+A_TrayMenu.Add()
 A_TrayMenu.Add("Quit", (*) => ExitApp())
+A_TrayMenu.Default := "Open Configurator"
 
 MyGui := WebViewGui("-Caption", "Better Mouselook Controls Configurator")
 
