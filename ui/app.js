@@ -91,24 +91,23 @@ document.getElementById('btnUpdate').addEventListener('click', () => {
   const checked = id => get(id).checked ? '1' : '0';
   const val     = id => get(id).value.trim().toLowerCase();
 
-  const parts = [
-    'rclick='       + checked('rclick'),
-    'movelook='     + checked('movelook'),
-    'lookLeft='     + val('lookLeft'),
-    'lookRight='    + val('lookRight'),
-    'forward='      + val('forward'),
-    'backwards='    + val('backwards'),
-    'moveLeft='     + val('moveLeft'),
-    'moveRight='    + val('moveRight'),
-    'combatArtKey=' + val('combatArtKey'),
-    'runeMaster='   + checked('runeMaster'),
-  ];
-
-  window.chrome.webview.postMessage(parts.join('|'));
+  window.chrome.webview.postMessage({
+    type:         'save-settings',
+    rclick:       checked('rclick'),
+    movelook:     checked('movelook'),
+    lookLeft:     val('lookLeft'),
+    lookRight:    val('lookRight'),
+    forward:      val('forward'),
+    backwards:    val('backwards'),
+    moveLeft:     val('moveLeft'),
+    moveRight:    val('moveRight'),
+    combatArtKey: val('combatArtKey'),
+    runeMaster:   checked('runeMaster'),
+  });
   document.getElementById('reloadModal').classList.add('is-active');
 });
 
 // Reload button
 document.getElementById('btnReload').addEventListener('click', () => {
-  window.chrome.webview.postMessage('reload');
+  window.chrome.webview.postMessage({ type: 'reload-ahk' });
 });

@@ -1,6 +1,7 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 #Include WebView2\WebViewToo.ahk
+#Include Lib\JSON.ahk
 
 SetWorkingDir(A_ScriptDir)
 
@@ -21,6 +22,7 @@ IniPath := A_ScriptDir "\Sacred2Mouselook.ini"
 LoadConfig()
   
 MyGui := WebViewGui(, "Better Mouselook Controls Configurator")
+  
 MyGui.NavigationCompleted(OnNavigationCompleted)
 MyGui.WebMessageReceived(OnWebMessage)
 MyGui.Navigate("ui/index.html")
@@ -31,14 +33,15 @@ OnNavigationCompleted(wv, args) {
 }
 
 OnWebMessage(wv, args) {
-  try msg := args.TryGetWebMessageAsString()
-  catch
-    return
-  if (msg = "reload") {
+  cfg := JSON.Parse(args.WebMessageAsJson)
+  if (cfg["type"] = "reload-ahk") {
     Reload()
     return
   }
-  SaveConfig(msg)
+  if (cfg["type"] = "save-settings") {
+    SaveConfig(cfg)
+    return
+  }
 }
 
 LoadConfig() {
@@ -59,21 +62,20 @@ LoadConfig() {
   RuneMaster    := IniRead(IniPath, "Config", "RuneMaster",    "0") = "1"
 }
 
-SaveConfig(raw) {
+SaveConfig(cfg) {
   global MlookRMB, MlookHybrid, Key_LookLeft, Key_LookRight
   global Key_Forward, Key_Backwards, Key_MoveLeft, Key_MoveRight
   global Key_CombatArt, RuneMaster, IniPath
-  cfg := ParseData(raw)
-  MlookRMB    := GetVal(cfg, "rclick")    = "1"
-  MlookHybrid := GetVal(cfg, "movelook")  = "1"
-  Key_LookLeft  := GetVal(cfg, "lookLeft",  "a")
-  Key_LookRight := GetVal(cfg, "lookRight", "d")
-  Key_Forward   := GetVal(cfg, "forward",   "w")
-  Key_Backwards := GetVal(cfg, "backwards", "s")
-  Key_MoveLeft  := GetVal(cfg, "moveLeft",  "u")
-  Key_MoveRight := GetVal(cfg, "moveRight", "o")
-  Key_CombatArt := GetVal(cfg, "combatArtKey", "")
-  RuneMaster    := GetVal(cfg, "runeMaster") = "1"
+  MlookRMB      := cfg["rclick"]       = "1"
+  MlookHybrid   := cfg["movelook"]     = "1"
+  Key_LookLeft  := cfg["lookLeft"]
+  Key_LookRight := cfg["lookRight"]
+  Key_Forward   := cfg["forward"]
+  Key_Backwards := cfg["backwards"]
+  Key_MoveLeft  := cfg["moveLeft"]
+  Key_MoveRight := cfg["moveRight"]
+  Key_CombatArt := cfg["combatArtKey"]
+  RuneMaster    := cfg["runeMaster"]   = "1"
   IniWrite(MlookRMB    ? "1" : "0", IniPath, "Config", "MlookRMB")
   IniWrite(MlookHybrid ? "1" : "0", IniPath, "Config", "MlookHybrid")
   IniWrite(Key_LookLeft,  IniPath, "Config", "Key_LookLeft")
@@ -106,16 +108,3 @@ SyncToWebView() {
   MyGui.PostWebMessageAsJson(json)
 }
 
-ParseData(raw) {
-  result := Map()
-  loop parse, raw, "|" {
-    pos := InStr(A_LoopField, "=")
-    if (pos > 0)
-      result[SubStr(A_LoopField, 1, pos - 1)] := SubStr(A_LoopField, pos + 1)
-  }
-  return result
-}
-
-GetVal(cfg, key, default := "") {
-  return cfg.Has(key) ? cfg[key] : default
-}
