@@ -245,3 +245,58 @@ body {
 .ko-Popup-close:hover {
   color: #333;
 }
+
+/* ── Reload modal ───────────────────────────────────────── */
+
+.ko-ReloadModal {
+  display: none;
+  position: fixed;
+  inset: 10px;
+  z-index: 200;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ko-ReloadModal.is-active {
+  display: flex;
+}
+
+.ko-ReloadModal-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.ko-ReloadModal-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+}
+
+.ko-ReloadModal-btn {
+  padding: 12px 48px;
+  background: #3a7bd5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.ko-ReloadModal-btn:hover {
+  background: #2f66b8;
+}
+
+.ko-ReloadModal-btn:active {
+  background: #265499;
+}

@@ -68,7 +68,47 @@ document.querySelectorAll('.ko-KeyInput').forEach(input => {
   input.addEventListener('focus', () => input.select());
 });
 
-// Update script button — handler to be implemented
+// Receive config from AHK and populate form fields
+window.chrome.webview.addEventListener('message', e => {
+  const cfg = e.data;
+  const setCheck = (id, val) => { document.getElementById(id).checked = val === '1'; };
+  const setVal   = (id, val) => { document.getElementById(id).value = val; };
+  setCheck('rclick',     cfg.rclick);
+  setCheck('movelook',   cfg.movelook);
+  setVal('lookLeft',     cfg.lookLeft);
+  setVal('lookRight',    cfg.lookRight);
+  setVal('forward',      cfg.forward);
+  setVal('backwards',    cfg.backwards);
+  setVal('moveLeft',     cfg.moveLeft);
+  setVal('moveRight',    cfg.moveRight);
+  setVal('combatArtKey', cfg.combatArtKey);
+  setCheck('runeMaster', cfg.runeMaster);
+});
+
+// Update script button
 document.getElementById('btnUpdate').addEventListener('click', () => {
-  // TODO: wire up to AHK
+  const get     = id => document.getElementById(id);
+  const checked = id => get(id).checked ? '1' : '0';
+  const val     = id => get(id).value.trim().toLowerCase();
+
+  const parts = [
+    'rclick='       + checked('rclick'),
+    'movelook='     + checked('movelook'),
+    'lookLeft='     + val('lookLeft'),
+    'lookRight='    + val('lookRight'),
+    'forward='      + val('forward'),
+    'backwards='    + val('backwards'),
+    'moveLeft='     + val('moveLeft'),
+    'moveRight='    + val('moveRight'),
+    'combatArtKey=' + val('combatArtKey'),
+    'runeMaster='   + checked('runeMaster'),
+  ];
+
+  window.chrome.webview.postMessage(parts.join('|'));
+  document.getElementById('reloadModal').classList.add('is-active');
+});
+
+// Reload button
+document.getElementById('btnReload').addEventListener('click', () => {
+  window.chrome.webview.postMessage('reload');
 });
