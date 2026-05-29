@@ -21,6 +21,10 @@ Tech stack:
 - Variable names: PascalCase for globals and GUI controls, camelCase for locals.
 - Comments use `;` (single-line only in AHK).
 
+### JS
+
+- when creating ids, and passing values from JS to AHK, use kebab-case identifiers, for example `key-look-left`, ideally matching the variable in the AHK script eg. `Key_LookLeft` should be named `key-look-left` in the HTML and JS code
+
 ### CSS
 
 - prefix CSS classes with `ko-` (eg. `ko-Dialog` for a `Dialog` component)
