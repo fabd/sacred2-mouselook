@@ -21,7 +21,7 @@ IniPath := A_ScriptDir "\Sacred2Mouselook.ini"
 
 LoadConfig()
   
-MyGui := WebViewGui(, "Better Mouselook Controls Configurator")
+MyGui := WebViewGui("-Caption", "Better Mouselook Controls Configurator")
   
 MyGui.NavigationCompleted(OnNavigationCompleted)
 MyGui.WebMessageReceived(OnWebMessage)

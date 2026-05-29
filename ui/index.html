@@ -7,10 +7,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="ko-App">
-    <h1 class="ko-App-title">Better Mouselook Controls Configurator</h1>
+  <header class="ko-TitleBar">
+    <span class="ko-TitleBar-title">Better Mouselook Controls Configurator</span>
+    <button class="ko-TitleBar-close" onclick="ahk.gui.Hide()" type="button">&#x2715;</button>
+  </header>
 
-    <div class="ko-Panel">
+  <div class="ko-App">
+    <div class="ko-Panel mb-4">
       <h2 class="ko-Panel-title">Mouselook Options</h2>
 
       <div class="ko-Row">
@@ -36,7 +39,7 @@
       </div>
     </div>
 
-    <div class="ko-Panel">
+    <div class="ko-Panel mb-4">
       <h2 class="ko-Panel-title">Movement Keys</h2>
       <p class="ko-Panel-subtitle">Make sure these match your in-game keybinds!</p>
 
@@ -83,7 +86,7 @@
       </div>
     </div>
 
-    <div class="ko-Panel">
+    <div class="ko-Panel mb-4">
       <h2 class="ko-Panel-title">Other Features</h2>
 
       <div class="ko-Row">
