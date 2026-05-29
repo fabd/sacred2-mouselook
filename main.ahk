@@ -92,19 +92,18 @@ SyncToWebView() {
   global MlookRMB, MlookHybrid, Key_LookLeft, Key_LookRight
   global Key_Forward, Key_Backwards, Key_MoveLeft, Key_MoveRight
   global Key_CombatArt, RuneMaster, MyGui
-  q := Chr(34)
-  json := "{"
-  json .= q "rclick"       q ":" q (MlookRMB    ? "1" : "0") q ","
-  json .= q "movelook"     q ":" q (MlookHybrid ? "1" : "0") q ","
-  json .= q "lookLeft"     q ":" q Key_LookLeft  q ","
-  json .= q "lookRight"    q ":" q Key_LookRight q ","
-  json .= q "forward"      q ":" q Key_Forward   q ","
-  json .= q "backwards"    q ":" q Key_Backwards q ","
-  json .= q "moveLeft"     q ":" q Key_MoveLeft  q ","
-  json .= q "moveRight"    q ":" q Key_MoveRight q ","
-  json .= q "combatArtKey" q ":" q Key_CombatArt q ","
-  json .= q "runeMaster"   q ":" q (RuneMaster   ? "1" : "0") q
-  json .= "}"
-  MyGui.PostWebMessageAsJson(json)
+  cfg := Map(
+    "rclick",       MlookRMB    ? "1" : "0",
+    "movelook",     MlookHybrid ? "1" : "0",
+    "lookLeft",     Key_LookLeft,
+    "lookRight",    Key_LookRight,
+    "forward",      Key_Forward,
+    "backwards",    Key_Backwards,
+    "moveLeft",     Key_MoveLeft,
+    "moveRight",    Key_MoveRight,
+    "combatArtKey", Key_CombatArt,
+    "runeMaster",   RuneMaster   ? "1" : "0"
+  )
+  MyGui.PostWebMessageAsJson(JSON.Stringify(cfg))
 }
 
