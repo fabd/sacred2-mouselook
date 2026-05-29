@@ -1,5 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
+Persistent()
 #Include WebView2\WebViewToo.ahk
 #Include Lib\JSON.ahk
 
@@ -17,16 +18,30 @@ global Key_MoveRight := "o"
 global Key_CombatArt := ""
 global RuneMaster    := false
 
+global MyGui
+global GUI_WIN_SIZE := "w540 h760"
+
 IniPath := A_ScriptDir "\Sacred2Mouselook.ini"
 
 LoadConfig()
-  
+
+A_TrayMenu.Delete()
+A_TrayMenu.Add("Open Configurator", OpenConfigurator)
+A_TrayMenu.Add("Quit", (*) => ExitApp())
+
 MyGui := WebViewGui("-Caption", "Better Mouselook Controls Configurator")
-  
+
 MyGui.NavigationCompleted(OnNavigationCompleted)
 MyGui.WebMessageReceived(OnWebMessage)
 MyGui.Navigate("ui/index.html")
-MyGui.Show("w540 h760")
+
+if (!FileExist(IniPath))
+  MyGui.Show(GUI_WIN_SIZE)
+
+OpenConfigurator(*) {
+  global MyGui, GUI_WIN_SIZE
+  MyGui.Show(GUI_WIN_SIZE)
+}
 
 OnNavigationCompleted(wv, args) {
   SyncToWebView()
