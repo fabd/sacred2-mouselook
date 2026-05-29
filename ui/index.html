@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Better Mouselook Controls Configurator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ko-App">
+    <h1 class="ko-App-title">Better Mouselook Controls Configurator</h1>
+
+    <div class="ko-Panel">
+      <h2 class="ko-Panel-title">Mouselook Options</h2>
+
+      <div class="ko-Row">
+        <label class="ko-Row-label" for="rclick">Mouselook with Right Mouse Button</label>
+        <div class="ko-Row-controls">
+          <label class="ko-Checkbox">
+            <input type="checkbox" id="rclick" checked>
+            <span class="ko-Checkbox-box"></span>
+          </label>
+          <button class="ko-InfoIcon" data-info="rclick" type="button">i</button>
+        </div>
+      </div>
+
+      <div class="ko-Row">
+        <label class="ko-Row-label" for="movelook">Mouselook while Moving Forward/Backwards</label>
+        <div class="ko-Row-controls">
+          <label class="ko-Checkbox">
+            <input type="checkbox" id="movelook" checked>
+            <span class="ko-Checkbox-box"></span>
+          </label>
+          <button class="ko-InfoIcon" data-info="movelook" type="button">i</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ko-Panel">
+      <h2 class="ko-Panel-title">Movement Keys</h2>
+      <p class="ko-Panel-subtitle">Make sure these match your in-game keybinds!</p>
+
+      <div class="ko-Row">
+        <label class="ko-Row-label" for="lookLeft">Look Left</label>
+        <div class="ko-Row-controls">
+          <input class="ko-KeyInput" type="text" id="lookLeft" value="a" maxlength="1">
+        </div>
+      </div>
+
+      <div class="ko-Row">
+        <label class="ko-Row-label" for="lookRight">Look Right</label>
+        <div class="ko-Row-controls">
+          <input class="ko-KeyInput" type="text" id="lookRight" value="d" maxlength="1">
+        </div>
+      </div>
+
+      <div class="ko-Row">
+        <label class="ko-Row-label" for="forward">Forward</label>
+        <div class="ko-Row-controls">
+          <input class="ko-KeyInput" type="text" id="forward" value="w" maxlength="1">
+        </div>
+      </div>
+
+      <div class="ko-Row">
+        <label class="ko-Row-label" for="backwards">Backwards</label>
+        <div class="ko-Row-controls">
+          <input class="ko-KeyInput" type="text" id="backwards" value="s" maxlength="1">
+        </div>
+      </div>
+
+      <div class="ko-Row">
+        <label class="ko-Row-label" for="moveLeft">Move Left</label>
+        <div class="ko-Row-controls">
+          <input class="ko-KeyInput" type="text" id="moveLeft" value="q" maxlength="1">
+        </div>
+      </div>
+
+      <div class="ko-Row">
+        <label class="ko-Row-label" for="moveRight">Move Right</label>
+        <div class="ko-Row-controls">
+          <input class="ko-KeyInput" type="text" id="moveRight" value="e" maxlength="1">
+        </div>
+      </div>
+    </div>
+
+    <div class="ko-Panel">
+      <h2 class="ko-Panel-title">Other Features</h2>
+
+      <div class="ko-Row">
+        <label class="ko-Row-label" for="combatArtKey">Combat Art Key</label>
+        <div class="ko-Row-controls">
+          <input class="ko-KeyInput" type="text" id="combatArtKey" value="r" maxlength="1">
+          <button class="ko-InfoIcon" data-info="combatArtKey" type="button">i</button>
+        </div>
+      </div>
+
+      <div class="ko-Row">
+        <label class="ko-Row-label" for="runeMaster">RuneMaster Shortcut</label>
+        <div class="ko-Row-controls">
+          <label class="ko-Checkbox">
+            <input type="checkbox" id="runeMaster" checked>
+            <span class="ko-Checkbox-box"></span>
+          </label>
+          <button class="ko-InfoIcon" data-info="runeMaster" type="button">i</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="ko-UpdateBtn" id="btnUpdate" type="button">UPDATE SCRIPT</button>
+  </div>
+
+  <div class="ko-Popup" id="infoPopup">
+    <button class="ko-Popup-close" id="popupClose" type="button">&#x2715;</button>
+    <p class="ko-Popup-text" id="popupText"></p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

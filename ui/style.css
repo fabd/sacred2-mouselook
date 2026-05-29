@@ -1,0 +1,247 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  background: #f0f0f0;
+  color: #222;
+  min-height: 100vh;
+}
+
+/* ── App shell ─────────────────────────────────────────── */
+
+.ko-App {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 24px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ko-App-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #111;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #ccc;
+}
+
+/* ── Panel ──────────────────────────────────────────────── */
+
+.ko-Panel {
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.ko-Panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #555;
+  padding: 12px 16px 8px;
+  background: #f7f7f7;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ko-Panel-subtitle {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  padding: 8px 16px 0;
+}
+
+/* ── Row ────────────────────────────────────────────────── */
+
+.ko-Row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  min-height: 48px;
+  border-top: 1px solid #ebebeb;
+}
+
+.ko-Row:first-of-type {
+  border-top: none;
+}
+
+.ko-Row-label {
+  font-size: 13px;
+  color: #333;
+  cursor: default;
+  flex: 1;
+  padding-right: 12px;
+}
+
+.ko-Row-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ── Custom checkbox ────────────────────────────────────── */
+
+.ko-Checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ko-Checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ko-Checkbox-box {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #bbb;
+  border-radius: 4px;
+  background: #fff;
+  transition: border-color 0.15s, background 0.15s;
+  position: relative;
+}
+
+.ko-Checkbox input:checked + .ko-Checkbox-box {
+  background: #3a7bd5;
+  border-color: #3a7bd5;
+}
+
+.ko-Checkbox input:checked + .ko-Checkbox-box::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 7px;
+  height: 12px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.ko-Checkbox:hover .ko-Checkbox-box {
+  border-color: #3a7bd5;
+}
+
+/* ── Key input ──────────────────────────────────────────── */
+
+.ko-KeyInput {
+  width: 44px;
+  height: 34px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.15s;
+  text-transform: lowercase;
+}
+
+.ko-KeyInput:focus {
+  border-color: #3a7bd5;
+  background: #fff;
+}
+
+/* ── Info icon ──────────────────────────────────────────── */
+
+.ko-InfoIcon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid #bbb;
+  background: #f0f0f0;
+  color: #666;
+  font-size: 11px;
+  font-style: italic;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.ko-InfoIcon:hover {
+  background: #dde8f8;
+  border-color: #3a7bd5;
+  color: #3a7bd5;
+}
+
+/* ── Update button ──────────────────────────────────────── */
+
+.ko-UpdateBtn {
+  width: 100%;
+  padding: 16px;
+  background: #3a7bd5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.ko-UpdateBtn:hover {
+  background: #2f66b8;
+}
+
+.ko-UpdateBtn:active {
+  background: #265499;
+}
+
+/* ── Info popup ─────────────────────────────────────────── */
+
+.ko-Popup {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  background: #fff;
+  border: 1px solid #d4d4d4;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  padding: 14px 16px;
+  max-width: 280px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #444;
+}
+
+.ko-Popup.is-active {
+  display: block;
+}
+
+.ko-Popup-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: #999;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 4px;
+}
+
+.ko-Popup-close:hover {
+  color: #333;
+}
