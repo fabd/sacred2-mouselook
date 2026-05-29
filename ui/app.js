@@ -1,8 +1,8 @@
 const INFO_TEXTS = {
-  rclick: 'Hold the right mouse button to rotate the camera. The script polls mouse movement and translates it into look-left/look-right keypresses. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-  movelook: 'While a movement key (Forward or Backwards) is held, mouse movement will steer the camera. Useful for strafing and moving at the same time. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  combatArtKey: 'The key assigned to activate your current Combat Art in-game. Used by the script to trigger abilities. Make sure it matches your Sacred 2 keybind settings.',
-  runeMaster: 'Adds a shortcut — Alt + Shift + Left Click — to quickly open the RuneMaster screen. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
+  'mlook-rmb': 'Hold the right mouse button to rotate the camera. The script polls mouse movement and translates it into look-left/look-right keypresses. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
+  'mlook-hybrid': 'While a movement key (Forward or Backwards) is held, mouse movement will steer the camera. Useful for strafing and moving at the same time. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'key-combat-art': 'The key assigned to activate your current Combat Art in-game. Used by the script to trigger abilities. Make sure it matches your Sacred 2 keybind settings.',
+  'rune-master': 'Adds a shortcut — Alt + Shift + Left Click — to quickly open the RuneMaster screen. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.',
 };
 
 const popup = document.getElementById('infoPopup');
@@ -73,16 +73,16 @@ window.chrome.webview.addEventListener('message', e => {
   const cfg = e.data;
   const setCheck = (id, val) => { document.getElementById(id).checked = val === '1'; };
   const setVal   = (id, val) => { document.getElementById(id).value = val; };
-  setCheck('rclick',     cfg.rclick);
-  setCheck('movelook',   cfg.movelook);
-  setVal('lookLeft',     cfg.lookLeft);
-  setVal('lookRight',    cfg.lookRight);
-  setVal('forward',      cfg.forward);
-  setVal('backwards',    cfg.backwards);
-  setVal('moveLeft',     cfg.moveLeft);
-  setVal('moveRight',    cfg.moveRight);
-  setVal('combatArtKey', cfg.combatArtKey);
-  setCheck('runeMaster', cfg.runeMaster);
+  setCheck('mlook-rmb',     cfg['mlook-rmb']);
+  setCheck('mlook-hybrid',  cfg['mlook-hybrid']);
+  setVal('key-look-left',   cfg['key-look-left']);
+  setVal('key-look-right',  cfg['key-look-right']);
+  setVal('key-forward',     cfg['key-forward']);
+  setVal('key-backwards',   cfg['key-backwards']);
+  setVal('key-move-left',   cfg['key-move-left']);
+  setVal('key-move-right',  cfg['key-move-right']);
+  setVal('key-combat-art',  cfg['key-combat-art']);
+  setCheck('rune-master',   cfg['rune-master']);
 });
 
 // Update script button
@@ -92,17 +92,17 @@ document.getElementById('btnUpdate').addEventListener('click', () => {
   const val     = id => get(id).value.trim().toLowerCase();
 
   window.chrome.webview.postMessage({
-    type:         'save-settings',
-    rclick:       checked('rclick'),
-    movelook:     checked('movelook'),
-    lookLeft:     val('lookLeft'),
-    lookRight:    val('lookRight'),
-    forward:      val('forward'),
-    backwards:    val('backwards'),
-    moveLeft:     val('moveLeft'),
-    moveRight:    val('moveRight'),
-    combatArtKey: val('combatArtKey'),
-    runeMaster:   checked('runeMaster'),
+    type:            'save-settings',
+    'mlook-rmb':     checked('mlook-rmb'),
+    'mlook-hybrid':  checked('mlook-hybrid'),
+    'key-look-left':  val('key-look-left'),
+    'key-look-right': val('key-look-right'),
+    'key-forward':    val('key-forward'),
+    'key-backwards':  val('key-backwards'),
+    'key-move-left':  val('key-move-left'),
+    'key-move-right': val('key-move-right'),
+    'key-combat-art': val('key-combat-art'),
+    'rune-master':    checked('rune-master'),
   });
   document.getElementById('reloadModal').classList.add('is-active');
 });

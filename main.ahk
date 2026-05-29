@@ -66,16 +66,16 @@ SaveConfig(cfg) {
   global MlookRMB, MlookHybrid, Key_LookLeft, Key_LookRight
   global Key_Forward, Key_Backwards, Key_MoveLeft, Key_MoveRight
   global Key_CombatArt, RuneMaster, IniPath
-  MlookRMB      := cfg["rclick"]       = "1"
-  MlookHybrid   := cfg["movelook"]     = "1"
-  Key_LookLeft  := cfg["lookLeft"]
-  Key_LookRight := cfg["lookRight"]
-  Key_Forward   := cfg["forward"]
-  Key_Backwards := cfg["backwards"]
-  Key_MoveLeft  := cfg["moveLeft"]
-  Key_MoveRight := cfg["moveRight"]
-  Key_CombatArt := cfg["combatArtKey"]
-  RuneMaster    := cfg["runeMaster"]   = "1"
+  MlookRMB      := cfg["mlook-rmb"]    = "1"
+  MlookHybrid   := cfg["mlook-hybrid"] = "1"
+  Key_LookLeft  := cfg["key-look-left"]
+  Key_LookRight := cfg["key-look-right"]
+  Key_Forward   := cfg["key-forward"]
+  Key_Backwards := cfg["key-backwards"]
+  Key_MoveLeft  := cfg["key-move-left"]
+  Key_MoveRight := cfg["key-move-right"]
+  Key_CombatArt := cfg["key-combat-art"]
+  RuneMaster    := cfg["rune-master"]  = "1"
   IniWrite(MlookRMB    ? "1" : "0", IniPath, "Config", "MlookRMB")
   IniWrite(MlookHybrid ? "1" : "0", IniPath, "Config", "MlookHybrid")
   IniWrite(Key_LookLeft,  IniPath, "Config", "Key_LookLeft")
@@ -93,16 +93,16 @@ SyncToWebView() {
   global Key_Forward, Key_Backwards, Key_MoveLeft, Key_MoveRight
   global Key_CombatArt, RuneMaster, MyGui
   cfg := Map(
-    "rclick",       MlookRMB    ? "1" : "0",
-    "movelook",     MlookHybrid ? "1" : "0",
-    "lookLeft",     Key_LookLeft,
-    "lookRight",    Key_LookRight,
-    "forward",      Key_Forward,
-    "backwards",    Key_Backwards,
-    "moveLeft",     Key_MoveLeft,
-    "moveRight",    Key_MoveRight,
-    "combatArtKey", Key_CombatArt,
-    "runeMaster",   RuneMaster   ? "1" : "0"
+    "mlook-rmb",     MlookRMB    ? "1" : "0",
+    "mlook-hybrid",  MlookHybrid ? "1" : "0",
+    "key-look-left",  Key_LookLeft,
+    "key-look-right", Key_LookRight,
+    "key-forward",   Key_Forward,
+    "key-backwards", Key_Backwards,
+    "key-move-left",  Key_MoveLeft,
+    "key-move-right", Key_MoveRight,
+    "key-combat-art", Key_CombatArt,
+    "rune-master",   RuneMaster   ? "1" : "0"
   )
   MyGui.PostWebMessageAsJson(JSON.Stringify(cfg))
 }
