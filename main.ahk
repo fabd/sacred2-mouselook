@@ -30,6 +30,7 @@ A_TrayMenu.Add("Open Configurator", OpenConfigurator)
 A_TrayMenu.Add()
 A_TrayMenu.Add("Quit", (*) => ExitApp())
 A_TrayMenu.Default := "Open Configurator"
+A_TrayMenu.ClickCount := 1 ; use single-click to show the window
 
 MyGui := WebViewGui("-Caption", "Better Mouselook Controls Configurator")
 
