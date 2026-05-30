@@ -174,18 +174,18 @@ body {
 /* ── Key input ──────────────────────────────────────────── */
 
 .ko-KeyInput {
-  width: 44px;
+  width: 80px;
   height: 34px;
   border: 2px solid #ccc;
   border-radius: 4px;
-  text-align: center;
+  text-align: left;
+  padding: 0 6px;
   font-size: 15px;
   font-weight: 600;
   color: #222;
   background: #fafafa;
   outline: none;
   transition: border-color 0.15s;
-  text-transform: lowercase;
 }
 
 .ko-KeyInput:focus {

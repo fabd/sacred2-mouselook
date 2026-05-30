@@ -20,6 +20,7 @@ global Key_Backwards := "s"
 global Key_MoveLeft := "u"
 global Key_MoveRight := "o"
 global Key_CombatArt := ""
+global Key_VanityCam := "f10"
 global RuneMaster := false
 
 global MyGui
@@ -70,7 +71,7 @@ OnWebMessage(wv, args) {
 LoadConfig() {
   global MlookRMB, MlookHybrid, Key_LookLeft, Key_LookRight
   global Key_Forward, Key_Backwards, Key_MoveLeft, Key_MoveRight
-  global Key_CombatArt, RuneMaster, IniPath
+  global Key_CombatArt, Key_VanityCam, RuneMaster, IniPath
   if (!FileExist(IniPath))
     return
   MlookRMB := IniRead(IniPath, "Config", "MlookRMB", "1") = "1"
@@ -82,13 +83,14 @@ LoadConfig() {
   Key_MoveLeft := IniRead(IniPath, "Config", "Key_MoveLeft", "u")
   Key_MoveRight := IniRead(IniPath, "Config", "Key_MoveRight", "o")
   Key_CombatArt := IniRead(IniPath, "Config", "Key_CombatArt", "")
+  Key_VanityCam := IniRead(IniPath, "Config", "Key_VanityCam", "f10")
   RuneMaster := IniRead(IniPath, "Config", "RuneMaster", "0") = "1"
 }
 
 SaveConfig(cfg) {
   global MlookRMB, MlookHybrid, Key_LookLeft, Key_LookRight
   global Key_Forward, Key_Backwards, Key_MoveLeft, Key_MoveRight
-  global Key_CombatArt, RuneMaster, IniPath
+  global Key_CombatArt, Key_VanityCam, RuneMaster, IniPath
   MlookRMB := cfg["mlook-rmb"] = "1"
   MlookHybrid := cfg["mlook-hybrid"] = "1"
   Key_LookLeft := cfg["key-look-left"]
@@ -98,6 +100,7 @@ SaveConfig(cfg) {
   Key_MoveLeft := cfg["key-move-left"]
   Key_MoveRight := cfg["key-move-right"]
   Key_CombatArt := cfg["key-combat-art"]
+  Key_VanityCam := cfg["key-vanity-cam"]
   RuneMaster := cfg["rune-master"] = "1"
   IniWrite(MlookRMB ? "1" : "0", IniPath, "Config", "MlookRMB")
   IniWrite(MlookHybrid ? "1" : "0", IniPath, "Config", "MlookHybrid")
@@ -108,13 +111,14 @@ SaveConfig(cfg) {
   IniWrite(Key_MoveLeft, IniPath, "Config", "Key_MoveLeft")
   IniWrite(Key_MoveRight, IniPath, "Config", "Key_MoveRight")
   IniWrite(Key_CombatArt, IniPath, "Config", "Key_CombatArt")
+  IniWrite(Key_VanityCam, IniPath, "Config", "Key_VanityCam")
   IniWrite(RuneMaster ? "1" : "0", IniPath, "Config", "RuneMaster")
 }
 
 SyncToWebView() {
   global MlookRMB, MlookHybrid, Key_LookLeft, Key_LookRight
   global Key_Forward, Key_Backwards, Key_MoveLeft, Key_MoveRight
-  global Key_CombatArt, RuneMaster, MyGui
+  global Key_CombatArt, Key_VanityCam, RuneMaster, MyGui
   cfg := Map(
     "mlook-rmb", MlookRMB ? "1" : "0",
     "mlook-hybrid", MlookHybrid ? "1" : "0",
@@ -125,6 +129,7 @@ SyncToWebView() {
     "key-move-left", Key_MoveLeft,
     "key-move-right", Key_MoveRight,
     "key-combat-art", Key_CombatArt,
+    "key-vanity-cam", Key_VanityCam,
     "rune-master", RuneMaster ? "1" : "0"
   )
   MyGui.PostWebMessageAsJson(JSON.Stringify(cfg))
