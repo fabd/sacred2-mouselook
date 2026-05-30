@@ -177,8 +177,10 @@ DragAcrossScreen(y) {
 
   if x >= A_ScreenWidth - 1 {
     Click "Middle Up"
-    dragging := false
+    Sleep 10
+    MouseMove 0, y, 0
+    Sleep 10
+    Click "Middle Down"
     x := 0
-    return false
   }
 }
