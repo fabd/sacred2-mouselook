@@ -6,4 +6,7 @@ disable-model-invocation: true
 
 Commit **staged changes only** with git.
 
-Checklist before you use `git commit`:
+If there are several changes worth mentioning include a small list of changes.
+
+Propose a commit message and ask for user confirmation before commiting.
+
