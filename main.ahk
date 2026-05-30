@@ -30,6 +30,10 @@ IniPath := A_ScriptDir "\Sacred2Mouselook.ini"
 
 LoadConfig()
 
+HotIf (*) => WinActive("ahk_class The Forge")
+Hotkey Key_VanityCam, ToggleDrag
+HotIf
+
 A_TrayMenu.Delete()
 A_TrayMenu.Add("Open Configurator", OpenConfigurator)
 A_TrayMenu.Add()
@@ -138,16 +142,12 @@ SyncToWebView() {
 global dragging := false
 global dragTimer := false
 
-#HotIf WinActive("ahk_class The Forge")
-
-F2:: ToggleDrag()
-
 #HotIf WinActive("ahk_class The Forge") && dragging
 Escape:: ToggleDrag()
 
 #HotIf  ; end the context
 
-ToggleDrag() {
+ToggleDrag(*) {
   global dragging, dragTimer
 
   if dragging {
@@ -155,12 +155,15 @@ ToggleDrag() {
     if dragTimer
       SetTimer dragTimer, 0
     Click "Middle Up"
+    Sleep 100
+    MouseMove A_ScreenWidth / 2, A_ScreenHeight / 2, 0
     return
   }
 
   dragging := true
   y := A_ScreenHeight - 1
-  MouseMove 0, y, 0
+  Sleep 50
+  MouseMove 0, y, 1
   Sleep 50
   Click "Middle Down"
 
