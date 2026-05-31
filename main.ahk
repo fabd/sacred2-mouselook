@@ -324,26 +324,10 @@ RuneMasterShortcut(*) {
   LeftMouseClick()
   Sleep 50
 
-  targetR := (RuneEmptyRGB >> 16) & 0xFF
-  targetG := (RuneEmptyRGB >> 8) & 0xFF
-  targetB := RuneEmptyRGB & 0xFF
-
-  tolR := (RuneEmptyRGBVar >> 16) & 0xFF
-  tolG := (RuneEmptyRGBVar >> 8) & 0xFF
-  tolB := RuneEmptyRGBVar & 0xFF
-
   loop RuneSlots {
     slotX := RuneX + (A_Index - 1) * RuneXInc
 
-    pixColor := PixelGetColor(slotX, RuneY, "RGB")
-
-    pixR := (pixColor >> 16) & 0xFF
-    pixG := (pixColor >> 8) & 0xFF
-    pixB := pixColor & 0xFF
-
-    if (Abs(pixR - targetR) <= tolR
-    && Abs(pixG - targetG) <= tolG
-    && Abs(pixB - targetB) <= tolB) {
+    if (IsRuneSlotEmpty(slotX, RuneY)) {
       MouseMove slotX, RuneY, 0
       Sleep 10
       LeftMouseClick()
@@ -358,6 +342,36 @@ RuneMasterShortcut(*) {
   ;BlockInput "MouseMoveOff"
 
   SoundBeep
+}
+
+; Returns true if all three sampled pixels at (x, y), (x - 10, y) and (x + 10, y)
+; match RuneEmptyRGB within RuneEmptyRGBVar tolerance
+IsRuneSlotEmpty(x, y) {
+  global RuneEmptyRGB, RuneEmptyRGBVar
+
+  targetR := (RuneEmptyRGB >> 16) & 0xFF
+  targetG := (RuneEmptyRGB >> 8) & 0xFF
+  targetB := RuneEmptyRGB & 0xFF
+
+  tolR := (RuneEmptyRGBVar >> 16) & 0xFF
+  tolG := (RuneEmptyRGBVar >> 8) & 0xFF
+  tolB := RuneEmptyRGBVar & 0xFF
+
+  PixelMatches(px, py) {
+    pixColor := PixelGetColor(px, py, "RGB")
+
+    pixR := (pixColor >> 16) & 0xFF
+    pixG := (pixColor >> 8) & 0xFF
+    pixB := pixColor & 0xFF
+
+    return (Abs(pixR - targetR) <= tolR
+    && Abs(pixG - targetG) <= tolG
+    && Abs(pixB - targetB) <= tolB)
+  }
+
+  return (PixelMatches(x, y)
+  && PixelMatches(x - 10, y)
+  && PixelMatches(x + 10, y))
 }
 
 LeftMouseClick(*) {
