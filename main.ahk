@@ -23,6 +23,14 @@ global Key_CombatArt := ""
 global Key_VanityCam := "f10"
 global RuneMaster := false
 
+; === Runemaster feature ===
+global RuneX := 2125
+global RuneY := 530
+global RuneXInc := 80
+global RuneSlots := 4
+global RuneEmptyRGB := 0x1a1a1a
+global RuneEmptyRGBVar := 0x181818
+
 global MyGui
 global GUI_WIN_SIZE := "w540 h760"
 
@@ -174,6 +182,11 @@ ApplyHotkeys() {
   Hotkey "$RButton", RButtonDown, "On"
   Hotkey "$RButton up", RButtonUp, "On"
   HotIf
+
+  if (RuneMaster) {
+    Hotkey "$!+LButton", RuneMasterShortcut, "On"
+    Hotkey "$!+F10", RuneMasterConfig, "On"
+  }
 }
 
 RButtonDown(*) {
@@ -294,4 +307,61 @@ DragAcrossScreen(y) {
     Click "Middle Down"
     x := 0
   }
+}
+
+RuneMasterConfig(*) {
+  MouseGetPos &coordX, &coordY
+  SoundBeep
+  MsgBox "RuneX " coordX " RuneY " coordY
+}
+
+RuneMasterShortcut(*) {
+  MouseGetPos &runePickX, &runePickY
+
+  ;BlockInput "MouseMove"
+
+  ; Pick up the rune
+  LeftMouseClick()
+  Sleep 50
+
+  targetR := (RuneEmptyRGB >> 16) & 0xFF
+  targetG := (RuneEmptyRGB >> 8) & 0xFF
+  targetB := RuneEmptyRGB & 0xFF
+
+  tolR := (RuneEmptyRGBVar >> 16) & 0xFF
+  tolG := (RuneEmptyRGBVar >> 8) & 0xFF
+  tolB := RuneEmptyRGBVar & 0xFF
+
+  loop RuneSlots {
+    slotX := RuneX + (A_Index - 1) * RuneXInc
+
+    pixColor := PixelGetColor(slotX, RuneY, "RGB")
+
+    pixR := (pixColor >> 16) & 0xFF
+    pixG := (pixColor >> 8) & 0xFF
+    pixB := pixColor & 0xFF
+
+    if (Abs(pixR - targetR) <= tolR
+    && Abs(pixG - targetG) <= tolG
+    && Abs(pixB - targetB) <= tolB) {
+      MouseMove slotX, RuneY, 0
+      Sleep 10
+      LeftMouseClick()
+      Sleep 100
+
+      MouseMove runePickX, runePickY, 0
+      BlockInput "MouseMoveOff"
+      return
+    }
+  }
+
+  ;BlockInput "MouseMoveOff"
+
+  SoundBeep
+}
+
+LeftMouseClick(*) {
+  Click "LButton down"
+  Sleep 10
+  Click "LButton up"
 }
