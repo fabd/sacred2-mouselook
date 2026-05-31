@@ -155,6 +155,15 @@ ApplyHotkeys() {
     HotIfWinActive
   }
 
+  if (MlookHybrid) {
+    HotIfWinActive "ahk_class The Forge"
+    Hotkey "$~" Key_Forward, MoveForwardDown, "On"
+    Hotkey "$~" Key_Forward " up", MoveForwardUp, "On"
+    Hotkey "$~" Key_Backwards, MoveForwardDown, "On"
+    Hotkey "$~" Key_Backwards " up", MoveForwardUp, "On"
+    HotIfWinActive
+  }
+
   HotIf IsMlookRMBActive
   Hotkey "$RButton", RButtonDown, "On"
   Hotkey "$RButton up", RButtonUp, "On"
@@ -171,6 +180,21 @@ RButtonUp(*) {
     || GetKeyState(Key_Backwards, "P"))) {
     return
   }
+  Send "{MButton up}"
+}
+
+MoveForwardDown(*) {
+  Send "{MButton down}"
+}
+
+MoveForwardUp(*) {
+  if (MlookHybrid == 1
+    && (GetKeyState("RButton", "P")
+    || GetKeyState(Key_MoveLeft)
+    || GetKeyState(Key_MoveRight))) {
+    return
+  }
+
   Send "{MButton up}"
 }
 
@@ -204,7 +228,6 @@ LookRight(*) {
     SendInput "{" Key_LookRight " up}"
   }
 }
-
 
 global dragging := false
 global dragTimer := false
