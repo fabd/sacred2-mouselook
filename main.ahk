@@ -148,6 +148,12 @@ ApplyHotkeys() {
     HotIfWinActive
   }
 
+  if (Key_CombatArt != "") {
+    HotIfWinActive "ahk_class The Forge"
+    Hotkey Key_CombatArt, CombatArtShortcut, "On"
+    HotIfWinActive
+  }
+
   if (MlookHybrid || MlookRMB) {
     HotIfWinActive "ahk_class The Forge"
     Hotkey "$" Key_LookLeft, LookLeft, "On"
@@ -227,6 +233,13 @@ LookRight(*) {
     KeyWait Key_LookRight
     SendInput "{" Key_LookRight " up}"
   }
+}
+
+; Sends a right mouse button click when Key_CombatArt is pressed
+CombatArtShortcut(*) {
+  SendInput "{RButton down}"
+  KeyWait Key_CombatArt
+  SendInput "{RButton up}"
 }
 
 global dragging := false
