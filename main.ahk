@@ -30,9 +30,7 @@ IniPath := A_ScriptDir "\Sacred2Mouselook.ini"
 
 LoadConfig()
 
-HotIf (*) => WinActive("ahk_class The Forge")
-Hotkey Key_VanityCam, ToggleDrag
-HotIf
+ApplyHotkeys()
 
 A_TrayMenu.Delete()
 A_TrayMenu.Add("Open Configurator", OpenConfigurator)
@@ -138,6 +136,75 @@ SyncToWebView() {
   )
   MyGui.PostWebMessageAsJson(JSON.Stringify(cfg))
 }
+
+IsMlookRMBActive(*) => MlookRMB && WinActive("ahk_class The Forge")
+
+ApplyHotkeys() {
+  global Key_VanityCam
+
+  if (Key_VanityCam != "") {
+    HotIfWinActive "ahk_class The Forge"
+    Hotkey Key_VanityCam, ToggleDrag, "On"
+    HotIfWinActive
+  }
+
+  if (MlookHybrid || MlookRMB) {
+    HotIfWinActive "ahk_class The Forge"
+    Hotkey "$" Key_LookLeft, LookLeft, "On"
+    Hotkey "$" Key_LookRight, LookRight, "On"
+    HotIfWinActive
+  }
+
+  HotIf IsMlookRMBActive
+  Hotkey "$RButton", RButtonDown, "On"
+  Hotkey "$RButton up", RButtonUp, "On"
+  HotIf
+}
+
+RButtonDown(*) {
+  Send "{MButton down}"
+}
+
+RButtonUp(*) {
+  if (MlookHybrid
+    && (GetKeyState(Key_Forward, "P")
+    || GetKeyState(Key_Backwards, "P"))) {
+    return
+  }
+  Send "{MButton up}"
+}
+
+; Note: without down/up it doesn't work
+LookLeft(*) {
+  if (GetKeyState("MButton", "P")
+  || GetKeyState("RButton", "P")
+  || GetKeyState(Key_Forward, "P")
+  || GetKeyState(Key_Backwards, "P")) {
+    SendInput "{" Key_MoveLeft " down}"
+    KeyWait Key_LookLeft
+    SendInput "{" Key_MoveLeft " up}"
+  } else {
+    SendInput "{" Key_LookLeft " down}"
+    KeyWait Key_LookLeft
+    SendInput "{" Key_LookLeft " up}"
+  }
+}
+
+LookRight(*) {
+  if (GetKeyState("MButton", "P")
+  || GetKeyState("RButton", "P")
+  || GetKeyState(Key_Forward, "P")
+  || GetKeyState(Key_Backwards, "P")) {
+    SendInput "{" Key_MoveRight " down}"
+    KeyWait Key_LookRight
+    SendInput "{" Key_MoveRight " up}"
+  } else {
+    SendInput "{" Key_LookRight " down}"
+    KeyWait Key_LookRight
+    SendInput "{" Key_LookRight " up}"
+  }
+}
+
 
 global dragging := false
 global dragTimer := false
