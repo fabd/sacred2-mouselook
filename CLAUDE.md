@@ -1,14 +1,19 @@
 # Sacred2MouselookDEV2
 
-AutoHotkey v2 GUI configurator for Sacred 2 mouselook settings.
+A Autohotkey v2 script to enhance Sacred 2 Remaster mouse and keyboard controls.
 
-This is a small app with NO build step. Do not use any npm packages. Instruct me where to download any required libraries like WebViewToo.
+The script includes a user friendly GUI to configure the hotkeys and toggle options.
 
-Tech stack:
+The main script is `main.ahk`.
+
+## Tech Stack
+
+This is a small app with NO build step. Do not use any npm packages.
 
 - Autohotkey v2
-- WebViewToo (already downloaded in the folder WebView2/ )
-- DO NOT use tailwind, bootstrap or any other CSS library
+- WebViewToo (already downloaded in the folder `Lib/WebView2/` )
+- JSON library (`Lib/JSON.ahk`)
+- For the GUI, DO NOT use Tailwind CSS, Bootstrap or any other CSS library
 - Standard Javascript
 
 ## Coding Standards
