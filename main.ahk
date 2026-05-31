@@ -6,6 +6,10 @@ Persistent()
 
 SetWorkingDir(A_ScriptDir)
 
+TraySetIcon(A_ScriptDir "\assets\tray-icon.ico")
+
+A_IconTip := "Better Mouselook Controls"
+
 ; === Misc Script Config ===
 ; use absolute screen coordinates for all mouse-related commands (not relative to active window)
 CoordMode "Mouse", "Screen"
