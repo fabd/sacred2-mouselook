@@ -1,14 +1,14 @@
 const INFO_TEXTS = {
   "mlook-rmb":
-    "Hold the right mouse button to rotate the camera. The script polls mouse movement and translates it into look-left/look-right keypresses. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+    "<b>Hold the right mouse button to rotate the camera</b>. When holding the right mouse button, the turn left/right keys will strafe instead (move left/right). Classic MMO controls. <b>NOTE!</b> You will have to use Shift + RMB to eat runes or equip items.",
   "mlook-hybrid":
-    "While a movement key (Forward or Backwards) is held, mouse movement will steer the camera. Useful for strafing and moving at the same time. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "<b>Mouselook is active while running</b> (forward or backwards). While running the turn left/right keys will strafe instead. Great to relax your hands/wrists (no need to hold the right mouse button).",
   "key-combat-art":
-    "The key assigned to activate your current Combat Art in-game. Used by the script to trigger abilities. Make sure it matches your Sacred 2 keybind settings.",
+    "If set, this key will trigger your selected combat art (same as clicking right mouse button). Useful if Quickcast is off and you use Classic Mouselook. Recommended key: f. Leave this empty to turn it off.",
   "rune-master":
     "Adds a shortcut — Alt + Shift + Left Click — to quickly open the RuneMaster screen. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
   "key-vanity-cam":
-    "Activate vanity camera like in Skyrim. Press shortcut again, or the ESC key to toggle off",
+    "Activates a vanity camera (like in Skyrim). Nice to show off your character! Press shortcut again (or the ESC key) to toggle off.",
 };
 
 const popup = document.getElementById("infoPopup");
@@ -18,7 +18,7 @@ const popupText = document.getElementById("popupText");
 function showPopup(btn) {
   const rect = btn.getBoundingClientRect();
   const key = btn.dataset.info;
-  popupText.textContent = INFO_TEXTS[key] || "";
+  popupText.innerHTML = INFO_TEXTS[key] || "";
   popup.classList.add("is-active");
 
   // Position below the button, right-aligned to it
