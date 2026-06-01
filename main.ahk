@@ -27,6 +27,10 @@ global Key_CombatArt := ""
 global Key_VanityCam := "f10"
 global RuneMaster := false
 
+; === Look hotkey state ===
+global LookLeftActiveKey := ""   ; key currently held down by the look-left hotkey ("" = none)
+global LookRightActiveKey := ""  ; key currently held down by the look-right hotkey ("" = none)
+
 ; === Runemaster feature ===
 global RuneX := 2125
 global RuneY := 530
@@ -168,8 +172,10 @@ ApplyHotkeys() {
 
   if (MlookHybrid || MlookRMB) {
     HotIfWinActive "ahk_class The Forge"
-    Hotkey "$" Key_LookLeft, LookLeft, "On"
-    Hotkey "$" Key_LookRight, LookRight, "On"
+    Hotkey "$" Key_LookLeft, LookLeftDown, "On"
+    Hotkey "$" Key_LookLeft " up", LookLeftUp, "On"
+    Hotkey "$" Key_LookRight, LookRightDown, "On"
+    Hotkey "$" Key_LookRight " up", LookRightUp, "On"
     HotIfWinActive
   }
 
@@ -221,35 +227,45 @@ MoveForwardUp(*) {
   Send "{MButton up}"
 }
 
-; Note: without down/up it doesn't work
-LookLeft(*) {
-  if (GetKeyState("MButton", "P")
+; True when we should steer with movement keys instead of look keys
+; (mouse-look active, or hybrid forward/back movement in progress)
+InMouselookMode() {
+  return GetKeyState("MButton", "P")
   || GetKeyState("RButton", "P")
   || GetKeyState(Key_Forward, "P")
-  || GetKeyState(Key_Backwards, "P")) {
-    SendInput "{" Key_MoveLeft " down}"
-    KeyWait Key_LookLeft
-    SendInput "{" Key_MoveLeft " up}"
-  } else {
-    SendInput "{" Key_LookLeft " down}"
-    KeyWait Key_LookLeft
-    SendInput "{" Key_LookLeft " up}"
-  }
+  || GetKeyState(Key_Backwards, "P")
 }
 
-LookRight(*) {
-  if (GetKeyState("MButton", "P")
-  || GetKeyState("RButton", "P")
-  || GetKeyState(Key_Forward, "P")
-  || GetKeyState(Key_Backwards, "P")) {
-    SendInput "{" Key_MoveRight " down}"
-    KeyWait Key_LookRight
-    SendInput "{" Key_MoveRight " up}"
-  } else {
-    SendInput "{" Key_LookRight " down}"
-    KeyWait Key_LookRight
-    SendInput "{" Key_LookRight " up}"
-  }
+LookLeftDown(*) {
+  global LookLeftActiveKey
+  if (LookLeftActiveKey != "")          ; already held (OS auto-repeat) - ignore
+    return
+  LookLeftActiveKey := InMouselookMode() ? Key_MoveLeft : Key_LookLeft
+  SendInput "{" LookLeftActiveKey " down}"
+}
+
+LookLeftUp(*) {
+  global LookLeftActiveKey
+  if (LookLeftActiveKey = "")
+    return
+  SendInput "{" LookLeftActiveKey " up}"
+  LookLeftActiveKey := ""
+}
+
+LookRightDown(*) {
+  global LookRightActiveKey
+  if (LookRightActiveKey != "")
+    return
+  LookRightActiveKey := InMouselookMode() ? Key_MoveRight : Key_LookRight
+  SendInput "{" LookRightActiveKey " down}"
+}
+
+LookRightUp(*) {
+  global LookRightActiveKey
+  if (LookRightActiveKey = "")
+    return
+  SendInput "{" LookRightActiveKey " up}"
+  LookRightActiveKey := ""
 }
 
 ; Sends a right mouse button click when Key_CombatArt is pressed
@@ -263,7 +279,7 @@ global dragging := false
 global dragTimer := false
 
 #HotIf WinActive("ahk_class The Forge") && dragging
-Escape:: ToggleDrag()
+  Escape:: ToggleDrag()
 
 #HotIf  ; end the context
 
