@@ -199,14 +199,22 @@ ApplyHotkeys() {
   }
 }
 
+IsMlookHybridActive(*) {
+  return MlookHybrid
+    && (GetKeyState(Key_Forward, "P")
+    || GetKeyState(Key_Backwards, "P"))
+}
+
+IsMlookClassicActive(*) {
+  return GetKeyState("RButton", "P")
+}
+
 RButtonDown(*) {
   Send "{MButton down}"
 }
 
 RButtonUp(*) {
-  if (MlookHybrid
-    && (GetKeyState(Key_Forward, "P")
-    || GetKeyState(Key_Backwards, "P"))) {
+  if (IsMlookHybridActive()) {
     return
   }
   Send "{MButton up}"
@@ -218,7 +226,7 @@ MoveForwardDown(*) {
 
 MoveForwardUp(*) {
   if (MlookHybrid == 1
-    && (GetKeyState("RButton", "P")
+    && (IsMlookClassicActive()
     || GetKeyState(Key_MoveLeft)
     || GetKeyState(Key_MoveRight))) {
     return
@@ -231,9 +239,8 @@ MoveForwardUp(*) {
 ; (mouse-look active, or hybrid forward/back movement in progress)
 InMouselookMode() {
   return GetKeyState("MButton", "P")
-  || GetKeyState("RButton", "P")
-  || GetKeyState(Key_Forward, "P")
-  || GetKeyState(Key_Backwards, "P")
+  || IsMlookClassicActive()
+  || IsMlookHybridActive()
 }
 
 LookLeftDown(*) {
@@ -250,6 +257,10 @@ LookLeftUp(*) {
     return
   SendInput "{" LookLeftActiveKey " up}"
   LookLeftActiveKey := ""
+  
+  if (!IsMlookHybridActive() && !IsMlookClassicActive()) {
+    Send "{MButton up}"
+  }
 }
 
 LookRightDown(*) {
@@ -266,6 +277,10 @@ LookRightUp(*) {
     return
   SendInput "{" LookRightActiveKey " up}"
   LookRightActiveKey := ""
+
+  if (!IsMlookHybridActive() && !IsMlookClassicActive()) {
+    Send "{MButton up}"
+  }
 }
 
 ; Sends a right mouse button click when Key_CombatArt is pressed
