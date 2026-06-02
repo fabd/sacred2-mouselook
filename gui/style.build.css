@@ -240,10 +240,10 @@ body {
   height: 48px;
   background: #ccc;
   padding: 0 1rem;
+  -webkit-app-region: drag;
 }
 .ko-TitleBar-title {
   flex: 1;
-  -webkit-app-region: drag;
 }
 .ko-TitleBar-close {
   cursor: pointer;
