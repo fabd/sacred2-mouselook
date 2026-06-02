@@ -6,7 +6,7 @@ Persistent()
 
 SetWorkingDir(A_ScriptDir)
 
-TraySetIcon(A_ScriptDir "\assets\tray-icon.ico")
+TraySetIcon(A_ScriptDir "\gui\img\tray-icon.ico")
 
 A_IconTip := "Better Mouselook Controls"
 
@@ -63,7 +63,7 @@ MyGui.NavigationStarting(OnNavigationStarting)
 
 MyGui.NavigationCompleted(OnNavigationCompleted)
 MyGui.WebMessageReceived(OnWebMessage)
-MyGui.Navigate("ui/index.html")
+MyGui.Navigate("gui/index.html")
 
 if (!FileExist(IniPath))
   MyGui.Show(GUI_WIN_SIZE)
