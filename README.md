@@ -19,6 +19,15 @@ App notes:
 2. On first launch the configurator opens — set your options and click **Update Script**
 3. The script stays active in the system tray; double-click the tray icon to reopen the configurator
 
+## Dev Setup
+
+- Git Bash (git for windows)
+- VSCode with AHK++ extension
+- TailwindCSS standalone
+- (optional) Claude Code
+- (optional) Sublime Merge
+- (optional) Github CLI
+
 ## Requirements
 
 - [AutoHotkey v2](https://www.autohotkey.com/)
