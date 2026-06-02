@@ -5,7 +5,7 @@ Library to parse JSON.
 ### How to use it
 
 ```ahk
-#Include Lib\JSON.ahk
+#Include lib\JSON.ahk
 
 ; === Parsing JSON ===
 obj := JSON.Parse(jsonString)           ; returns Map / Array by default

@@ -11,8 +11,8 @@ The main script is `main.ahk`.
 This is a small app with NO build step. Do not use any npm packages.
 
 - Autohotkey v2
-- WebViewToo (already downloaded in the folder `Lib/WebView2/` )
-- JSON library (`Lib/JSON.ahk`)
+- WebViewToo (already downloaded in the folder `lib/WebView2/` )
+- JSON library (`lib/JSON.ahk`)
 - For the GUI, DO NOT use Tailwind CSS, Bootstrap or any other CSS library
 - Standard Javascript
 

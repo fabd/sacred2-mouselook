@@ -1,8 +1,8 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 Persistent()
-#Include Lib\WebView2\WebViewToo.ahk
-#Include Lib\JSON.ahk
+#Include lib\WebView2\WebViewToo.ahk
+#Include lib\JSON.ahk
 
 SetWorkingDir(A_ScriptDir)
 
