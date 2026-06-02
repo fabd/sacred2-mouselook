@@ -182,6 +182,9 @@
   .mt-\[-0\.2em\] {
     margin-top: -0.2em;
   }
+  .mt-\[30px\] {
+    margin-top: 30px;
+  }
   .mr-1 {
     margin-right: calc(var(--spacing) * 1);
   }

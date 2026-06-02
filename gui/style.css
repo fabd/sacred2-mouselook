@@ -8,6 +8,16 @@ body {
   min-height: 100vh;
 }
 
+/* doesn't work reliably (custom cursor gone when hovering on the titlebar)
+body,
+a:hover,
+button:hover, 
+input:hover,
+* {
+  cursor: url(img/mouse-cursor.png) 0 0, pointer !important;
+}
+*/
+
 /* UTILITIES */
 .mb-4 {
   margin-bottom: 1rem;
