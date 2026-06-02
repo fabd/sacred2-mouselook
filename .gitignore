@@ -1,5 +1,6 @@
 .*
 !.claude
 !.gitignore
+!.prettierrc.js
 __*
 *.ini
