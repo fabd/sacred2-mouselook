@@ -16,6 +16,21 @@ This is a small app with NO build step. Do not use any npm packages.
 - For the GUI, DO NOT use Tailwind CSS, Bootstrap or any other CSS library
 - Standard Javascript
 
+## Build instructions
+
+- after editing `gui/style.css` run `tailwindcss -i gui/style.css -o gui/style.build.css`
+
+
+## Project structure
+
+```
+gui/                         files for the WebView2 interface
+  img/                       all images go here
+  index.hml                 
+  style.build.css            output from tailwindcss, ignore
+  style.css                  the main stylesheet
+```
+
 ## Coding Standards
 
 - Use 2-space indentation for CSS, JS and AHK. Never use Tabs
