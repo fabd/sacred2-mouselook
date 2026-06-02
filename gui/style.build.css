@@ -179,6 +179,24 @@
   .right-\[16px\] {
     right: 16px;
   }
+  .container {
+    width: 100%;
+    @media (width >= 40rem) {
+      max-width: 40rem;
+    }
+    @media (width >= 48rem) {
+      max-width: 48rem;
+    }
+    @media (width >= 64rem) {
+      max-width: 64rem;
+    }
+    @media (width >= 80rem) {
+      max-width: 80rem;
+    }
+    @media (width >= 96rem) {
+      max-width: 96rem;
+    }
+  }
   .mt-\[-0\.2em\] {
     margin-top: -0.2em;
   }
@@ -215,23 +233,13 @@
   }
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: sans-serif;
+  font-weight: 400;
+  font-style: normal;
   font-size: 16px;
   background: #f0f0f0;
   color: #222;
   min-height: 100vh;
-}
-.mb-4 {
-  margin-bottom: 1rem;
-}
-.mb-3 {
-  margin-bottom: 0.75rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-.mb-1 {
-  margin-bottom: 0.25rem;
 }
 .ko-TitleBar {
   display: flex;
@@ -376,21 +384,20 @@ body {
 .ko-KeyInput {
   width: 80px;
   height: 34px;
+  text-align: left;
   border: 2px solid #ccc;
   border-radius: 4px;
-  text-align: left;
   padding: 0 6px;
   font-size: 16px;
   font-weight: 600;
   text-align: center;
   color: #222;
-  background: #fafafa;
+  background: #f8f8f8;
   outline: none;
   transition: border-color 0.15s;
 }
 .ko-KeyInput:focus {
   border-color: #3a7bd5;
-  background: #fff;
 }
 .ko-InfoIcon {
   width: 22px;
@@ -515,6 +522,87 @@ body {
 }
 .ko-ReloadModal-btn:active {
   background: #265499;
+}
+:root {
+  --te-color-dark: #001a3d;
+  --te-color-flow-1: #001a3d;
+  --te-color-flow-2: #003fa3;
+  --te-color-flow-3: #00d2ff;
+  --te-color-flow-4: #0066ff;
+  --te-glow: rgba(0, 210, 255, 0.65);
+  --te-glow-intensity: 8px;
+  --te-color-checkmark: #043f93;
+}
+.t-energy-disabled {
+  opacity: 0.4;
+  cursor: not-allowed !important;
+}
+.t-energy-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.t-energy-checkbox {
+  --size: 28px;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  min-width: var(--size);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #888;
+  transition: background 0.3s ease;
+}
+.t-energy-checkbox::before {
+  content: "";
+  position: absolute;
+  width: 220%;
+  height: 220%;
+  background: conic-gradient( from 0deg, var(--te-color-flow-1) 0%, var(--te-color-flow-2) 25%, var(--te-color-flow-3) 50%, var(--te-color-flow-4) 75%, var(--te-color-flow-1) 100% );
+  animation: rotate-conduit 3s linear infinite;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+}
+.t-energy-input:checked + .t-energy-checkbox::before {
+  opacity: 1;
+}
+.t-energy-inner {
+  position: absolute;
+  inset: 3px;
+  background: #fff;
+  border-radius: 6px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.t-energy-input:checked + .t-energy-checkbox .t-energy-inner {
+  background: #fff;
+}
+.t-energy-checkmark {
+  width: 16px;
+  height: 16px;
+  stroke: var(--te-color-checkmark);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  z-index: 3;
+  display: none;
+}
+.t-energy-input:checked + .t-energy-checkbox .t-energy-checkmark {
+  display: block;
+}
+@keyframes rotate-conduit {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 @property --tw-border-style {
   syntax: "*";
