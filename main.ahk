@@ -40,7 +40,7 @@ global RuneEmptyRGB := 0x1a1a1a
 global RuneEmptyRGBVar := 0x181818
 
 global MyGui
-global GUI_WIN_SIZE := "w540 h760"
+global GUI_WIN_SIZE := "w980 h670"
 
 IniPath := A_ScriptDir "\Sacred2Mouselook.ini"
 
@@ -57,6 +57,9 @@ A_TrayMenu.Default := "Open Configurator"
 A_TrayMenu.ClickCount := 1 ; use single-click to show the window
 
 MyGui := WebViewGui("-Caption", "Better Mouselook Controls Configurator")
+
+; Register the NavigationStarting event
+MyGui.NavigationStarting(OnNavigationStarting)
 
 MyGui.NavigationCompleted(OnNavigationCompleted)
 MyGui.WebMessageReceived(OnWebMessage)
@@ -84,6 +87,25 @@ OnWebMessage(wv, args) {
     SaveConfig(cfg)
     return
   }
+}
+
+; Handle links clicked in the webview, open them in user's browser.
+OnNavigationStarting(wvObj, args) {
+  ; Get the URL that the webview is attempting to load
+  targetUrl := args.Uri
+
+  ; Allow the local app page (served from the virtual host), the initial
+  ; blank page and inline data URIs to load normally inside the webview.
+  if (InStr(targetUrl, "://ahk.localhost/")
+    || targetUrl == "about:blank"
+    || InStr(targetUrl, "data:text/html")) {
+    return
+  }
+
+  ; Anything else is an external link - cancel the in-webview navigation
+  ; and open the URL in the user's default web browser instead.
+  args.Cancel := true
+  Run(targetUrl)
 }
 
 LoadConfig() {
@@ -257,7 +279,7 @@ LookLeftUp(*) {
     return
   SendInput "{" LookLeftActiveKey " up}"
   LookLeftActiveKey := ""
-  
+
   if (!IsMlookHybridActive() && !IsMlookClassicActive()) {
     Send "{MButton up}"
   }
