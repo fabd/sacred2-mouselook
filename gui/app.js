@@ -9,6 +9,8 @@ const INFO_TEXTS = {
     "Adds a shortcut — Alt + Shift + Left Click — to quickly open the RuneMaster screen. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
   "key-vanity-cam":
     "Activates a vanity camera (like in Skyrim). Nice to show off your character! Press shortcut again (or the ESC key) to toggle off.",
+  "movement-controls":
+    "<b>IMPORTANT!</b> Copy your in-game controls here, they must be the same!"
 };
 
 const popup = document.getElementById("infoPopup");
@@ -35,26 +37,14 @@ function showPopup(btn) {
 }
 
 document.querySelectorAll(".ko-InfoIcon").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (popup.classList.contains("is-active") && popup._source === btn) {
-      popup.classList.remove("is-active");
-      popup._source = null;
-    } else {
-      showPopup(btn);
-      popup._source = btn;
-    }
+  btn.addEventListener("mouseenter", () => {
+    showPopup(btn);
+    popup._source = btn;
   });
-});
-
-document.getElementById("popupClose").addEventListener("click", () => {
-  popup.classList.remove("is-active");
-  popup._source = null;
-});
-
-document.addEventListener("click", () => {
-  popup.classList.remove("is-active");
-  popup._source = null;
+  btn.addEventListener("mouseleave", () => {
+    popup.classList.remove("is-active");
+    popup._source = null;
+  });
 });
 
 document.querySelectorAll(".ko-KeyInput").forEach((input) => {
