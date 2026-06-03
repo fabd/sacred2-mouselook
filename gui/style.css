@@ -8,6 +8,10 @@
   src: url(font/Cinzel-Medium.ttf) format("truetype");
 }
 
+:root {
+  --color-text-gold: #ffda83;
+}
+
 body {
   font-family: sans-serif;
   font-weight: 400;
@@ -64,8 +68,8 @@ input:hover,
   border-radius: 4px;
   cursor: pointer;
   background: none;
-  border: none;
-  color: inherit;
+  border: 1px solid #8884;
+  color: #ccc;
   transition:
     background 0.15s,
     color 0.15s;
@@ -94,12 +98,14 @@ input:hover,
   width: 100%;
   height: 60px;
 
+  background: #444 url(img/footer-bg.png) no-repeat 0 0 / cover;
+
   @apply bg-[#2224];
   @apply flex items-center justify-center;
   border-top: 1px solid #0002;
 
   a {
-    color: #e7e7e7;
+    color: #c5cdcf;
   }
   a:hover {
     @apply text-[#fff] underline;
@@ -163,7 +169,7 @@ input:hover,
   font-size: 150%;
   line-height: 1;
 
-  color: #ffda83;
+  color: var(--color-text-gold);
   padding: 12px 16px 8px;
   border-bottom: 1px solid #33363b;
   background-color: #0003;

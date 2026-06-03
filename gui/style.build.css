@@ -238,6 +238,9 @@
     --tw-leading: calc(var(--spacing) * 1);
     line-height: calc(var(--spacing) * 1);
   }
+  .text-\[\#fff\] {
+    color: #fff;
+  }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
@@ -248,6 +251,9 @@
   font-weight: 500;
   font-display: swap;
   src: url(font/Cinzel-Medium.ttf) format("truetype");
+}
+:root {
+  --color-text-gold: #ffda83;
 }
 body {
   font-family: sans-serif;
@@ -284,8 +290,8 @@ body {
   border-radius: 4px;
   cursor: pointer;
   background: none;
-  border: none;
-  color: inherit;
+  border: 1px solid #8884;
+  color: #ccc;
   transition: background 0.15s, color 0.15s;
 }
 .ko-TitleBar-close:hover {
@@ -300,13 +306,14 @@ body {
   bottom: 0;
   width: 100%;
   height: 60px;
+  background: #444 url(img/footer-bg.png) no-repeat 0 0 / cover;
   background-color: #2224;
   display: flex;
   align-items: center;
   justify-content: center;
   border-top: 1px solid #0002;
   a {
-    color: #e7e7e7;
+    color: #c5cdcf;
   }
   a:hover {
     color: #fff;
@@ -351,7 +358,7 @@ body {
   font-weight: 500;
   font-size: 150%;
   line-height: 1;
-  color: #ffda83;
+  color: var(--color-text-gold);
   padding: 12px 16px 8px;
   border-bottom: 1px solid #33363b;
   background-color: #0003;
