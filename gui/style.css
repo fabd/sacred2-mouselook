@@ -43,7 +43,7 @@ input:hover,
   align-items: center;
   user-select: none;
   height: 48px;
-  background: #2224;
+  background: #0003;
   padding: 0 1rem;
 
   /* necessary for draggable, when using WebViewGui with -Caption */
@@ -57,6 +57,34 @@ input:hover,
   font-size: 150%;
   line-height: 1;
   color: #fff;
+}
+
+/* electric T-Energy gradient text, cycling horizontally */
+.ko-TEnergyText {
+  /* repeat the flow colors so the loop is seamless when scrolled */
+  background: linear-gradient(
+    90deg,
+    var(--te-color-flow-2),
+    var(--te-color-flow-3),
+    var(--te-color-flow-4),
+    var(--te-color-flow-3),
+    var(--te-color-flow-2)
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: te-text-flow 4s linear infinite;
+}
+
+@keyframes te-text-flow {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
 
 .ko-TitleBar-close {

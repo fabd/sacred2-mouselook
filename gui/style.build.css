@@ -234,9 +234,15 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .text-\[16px\] {
+    font-size: 16px;
+  }
   .leading-1 {
     --tw-leading: calc(var(--spacing) * 1);
     line-height: calc(var(--spacing) * 1);
+  }
+  .text-\[\#888\] {
+    color: #888;
   }
   .text-\[\#fff\] {
     color: #fff;
@@ -269,7 +275,7 @@ body {
   align-items: center;
   user-select: none;
   height: 48px;
-  background: #2224;
+  background: #0003;
   padding: 0 1rem;
   -webkit-app-region: drag;
 }
@@ -280,6 +286,23 @@ body {
   font-size: 150%;
   line-height: 1;
   color: #fff;
+}
+.ko-TEnergyText {
+  background: linear-gradient( 90deg, var(--te-color-flow-2), var(--te-color-flow-3), var(--te-color-flow-4), var(--te-color-flow-3), var(--te-color-flow-2) );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: te-text-flow 4s linear infinite;
+}
+@keyframes te-text-flow {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
 .ko-TitleBar-close {
   display: flex;
