@@ -355,26 +355,81 @@ input:hover,
 /* ========================================================= */
 
 .ko-UpdateBtn {
-  padding: 14px 40px;
+  --scale: calc(60 / 104); /* render the 104px-tall art at 80px; edit 80 to resize */
+  display: inline-flex;
+  align-items: stretch;
+  height: calc(104px * var(--scale)); /* = 80px */
   min-width: 300px;
-  background: #3a7bd5;
-  color: #fff;
+  padding: 0;
   border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  background: none;
   cursor: pointer;
-  transition: background 0.15s;
 }
 
-.ko-UpdateBtn:hover {
-  background: #2f66b8;
+/* shared sprite sheet for all three parts, scaled uniformly */
+.ko-UpdateBtn-left,
+.ko-UpdateBtn-mid,
+.ko-UpdateBtn-right {
+  background-image: url(img/button-sprite.png);
+  background-repeat: no-repeat;
+  background-size: calc(39px * var(--scale)) auto;
 }
 
+/* fixed-width caps */
+.ko-UpdateBtn-left,
+.ko-UpdateBtn-right {
+  flex: none;
+  width: calc(39px * var(--scale));
+}
+
+.ko-UpdateBtn-left {
+  background-position: 0 calc(-384px * var(--scale));
+}
+.ko-UpdateBtn-mid {
+  background-position: 0 calc(-512px * var(--scale));
+}
+.ko-UpdateBtn-right {
+  background-position: 0 calc(-640px * var(--scale));
+}
+
+/* repeating middle that carries the label */
+.ko-UpdateBtn-mid {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: repeat-x;
+  
+  color: #9bb8bc;
+  font-family: Cinzel, serif;
+  font-weight: 500;
+  font-size: 150%;
+}
+
+/* hover: tint the whole button via a filter — respects the sprite's */
+/* rounded, transparent edges (a solid overlay would show square corners) */
+.ko-UpdateBtn:hover .ko-UpdateBtn-left,
+.ko-UpdateBtn:hover .ko-UpdateBtn-mid,
+.ko-UpdateBtn:hover .ko-UpdateBtn-right {
+  filter: brightness(1.15);
+  color: #fff;
+}
 .ko-UpdateBtn:active {
-  background: #265499;
+  transform: scale(0.95);
 }
+
+
+/* hover state: shift each part to its darker row (slices 4-6) */
+/*
+.ko-UpdateBtn:hover .ko-UpdateBtn-left {
+  background-position: 0 calc(0px * var(--scale));
+}
+.ko-UpdateBtn:hover .ko-UpdateBtn-mid {
+  background-position: 0 calc(-128px * var(--scale));
+}
+.ko-UpdateBtn:hover .ko-UpdateBtn-right {
+  background-position: 0 calc(-256px * var(--scale));
+}*/
 
 /* ========================================================= */
 /* info popup */
@@ -428,10 +483,10 @@ input:hover,
 .ko-ReloadModal {
   display: none;
   position: fixed;
-  inset: 10px;
+  inset: 30px;
   z-index: 200;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid #d4d4d4;
+  background: #111;
+  border: 1px solid #855c22;
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   align-items: center;

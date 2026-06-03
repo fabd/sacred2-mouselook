@@ -496,23 +496,51 @@ body {
   background: #dde2e5;
 }
 .ko-UpdateBtn {
-  padding: 14px 40px;
+  --scale: calc(60 / 104);
+  display: inline-flex;
+  align-items: stretch;
+  height: calc(104px * var(--scale));
   min-width: 300px;
-  background: #3a7bd5;
-  color: #fff;
+  padding: 0;
   border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  background: none;
   cursor: pointer;
-  transition: background 0.15s;
 }
-.ko-UpdateBtn:hover {
-  background: #2f66b8;
+.ko-UpdateBtn-left, .ko-UpdateBtn-mid, .ko-UpdateBtn-right {
+  background-image: url(img/button-sprite.png);
+  background-repeat: no-repeat;
+  background-size: calc(39px * var(--scale)) auto;
+}
+.ko-UpdateBtn-left, .ko-UpdateBtn-right {
+  flex: none;
+  width: calc(39px * var(--scale));
+}
+.ko-UpdateBtn-left {
+  background-position: 0 calc(-384px * var(--scale));
+}
+.ko-UpdateBtn-mid {
+  background-position: 0 calc(-512px * var(--scale));
+}
+.ko-UpdateBtn-right {
+  background-position: 0 calc(-640px * var(--scale));
+}
+.ko-UpdateBtn-mid {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: repeat-x;
+  color: #9bb8bc;
+  font-family: Cinzel, serif;
+  font-weight: 500;
+  font-size: 150%;
+}
+.ko-UpdateBtn:hover .ko-UpdateBtn-left, .ko-UpdateBtn:hover .ko-UpdateBtn-mid, .ko-UpdateBtn:hover .ko-UpdateBtn-right {
+  filter: brightness(1.15);
+  color: #fff;
 }
 .ko-UpdateBtn:active {
-  background: #265499;
+  transform: scale(0.95);
 }
 .ko-Popup {
   position: fixed;
@@ -554,10 +582,10 @@ body {
 .ko-ReloadModal {
   display: none;
   position: fixed;
-  inset: 10px;
+  inset: 30px;
   z-index: 200;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid #d4d4d4;
+  background: #111;
+  border: 1px solid #855c22;
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   align-items: center;
