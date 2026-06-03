@@ -254,9 +254,21 @@ body {
   flex: 1;
 }
 .ko-TitleBar-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
   cursor: pointer;
   background: none;
   border: none;
+  color: inherit;
+  transition: background 0.15s, color 0.15s;
+}
+.ko-TitleBar-close:hover {
+  background: #4444;
+  color: #fff;
 }
 .ko-App {
   padding: 24px 20px 32px;
