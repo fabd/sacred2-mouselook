@@ -13,13 +13,12 @@ This is a small app with NO build step. Do not use any npm packages.
 - Autohotkey v2
 - WebViewToo (already downloaded in the folder `lib/WebView2/` )
 - JSON library (`lib/JSON.ahk`)
-- For the GUI, DO NOT use Tailwind CSS, Bootstrap or any other CSS library
+- TailwindCSS (standalone compiler)
 - Standard Javascript
 
-## Build instructions
+The user runs the standalone tailwindcss compiler while working on the project, which watches for changes to the main stylesheet and compiles it to `gui/style.build.css`:
 
-- after editing `gui/style.css` run `tailwindcss -i gui/style.css -o gui/style.build.css`
-
+`tailwindcss -w -i gui/style.css -o gui/style.build.css`
 
 ## Project structure
 
@@ -32,6 +31,7 @@ gui/                         files for the WebView2 interface
 ```
 
 ## Coding Standards
+
 
 - Use 2-space indentation for CSS, JS and AHK. Never use Tabs
 
