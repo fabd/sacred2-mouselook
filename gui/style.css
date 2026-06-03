@@ -1,22 +1,12 @@
 @import "tailwindcss";
 
-/*
 @font-face {
-  font-family: "Roboto";
+  font-family: "Cinzel";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(font/Roboto-Medium.ttf) format("truetype");
+  src: url(font/Cinzel-Medium.ttf) format("truetype");
 }
-
-@font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(font/Roboto-Bold.ttf) format("truetype");
-}
-*/
 
 body {
   font-family: sans-serif;
@@ -24,9 +14,10 @@ body {
   font-style: normal;
 
   font-size: 16px;
-  background: #f0f0f0;
   color: #222;
   min-height: 100vh;
+
+  background: #d3af7d url(img/app-bg.jpg) no-repeat center center / cover;
 }
 
 /* doesn't work reliably (custom cursor gone when hovering on the titlebar)
@@ -48,7 +39,7 @@ input:hover,
   align-items: center;
   user-select: none;
   height: 48px;
-  background: #ccc;
+  background: #2224;
   padding: 0 1rem;
 
   /* necessary for draggable, when using WebViewGui with -Caption */
@@ -57,6 +48,11 @@ input:hover,
 
 .ko-TitleBar-title {
   flex: 1;
+  font-family: Cinzel, serif;
+  font-weight: 500;
+  font-size: 150%;
+  line-height: 1;
+  color: #fff;
 }
 
 .ko-TitleBar-close {
@@ -98,7 +94,7 @@ input:hover,
   width: 100%;
   height: 60px;
 
-  @apply bg-[#a4a4a5];
+  @apply bg-[#2224];
   @apply flex items-center justify-center;
   border-top: 1px solid #0002;
 
@@ -154,21 +150,23 @@ input:hover,
 /* ========================================================= */
 
 .ko-Panel {
-  background: #fff;
-  border: 1px solid #d4d4d4;
+  border: 1px solid #35383d;
   border-radius: 6px;
   overflow: hidden;
+  box-shadow: 0 0 2px 1px #0008;
 }
 
 .ko-Panel-title {
-  font-size: 100%;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #555;
+  font-family: "Cinzel", serif;
+  font-variant: small-caps;
+  font-weight: 500;
+  font-size: 150%;
+  line-height: 1;
+
+  color: #ffda83;
   padding: 12px 16px 8px;
-  background: #f7f7f7;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #33363b;
+  background-color: #0003;
 }
 
 .ko-Panel-subtitle {
@@ -188,7 +186,8 @@ input:hover,
   justify-content: space-between;
   padding: 0 16px;
   min-height: 50px;
-  border-top: 1px solid #ebebeb;
+  border-top: 1px solid #2f3237;
+  background: #23262b;
 }
 
 .ko-Row:first-of-type {
@@ -197,7 +196,7 @@ input:hover,
 
 .ko-Row-label {
   font-size: 100%;
-  color: #333;
+  color: #fff;
   cursor: default;
   flex: 1;
   padding-right: 12px;
@@ -270,16 +269,17 @@ input:hover,
   width: 80px;
   height: 34px;
   text-align: left;
-  border: 2px solid #ccc;
+  border: 2px solid #3c3f44;
   border-radius: 4px;
   padding: 0 6px;
   font-size: 16px;
   font-weight: 600;
   text-align: center;
-  color: #222;
-  background: #f8f8f8;
+  color: #cdd1dc;
+  background: #181c1f;
   outline: none;
   transition: border-color 0.15s;
+  box-shadow: 0 0 2px 1px #0004;
 }
 
 .ko-KeyInput:focus {
@@ -294,9 +294,9 @@ input:hover,
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  border: 1px solid #bbb;
-  background: #f0f0f0;
-  color: #666;
+  /* border: 1px solid #bbb; */
+  background: #bdc2c5;
+  color: #1b1f20;
   font-size: 11px;
   font-style: italic;
   font-weight: 700;
@@ -311,9 +311,9 @@ input:hover,
 }
 
 .ko-InfoIcon:hover {
-  background: #dde8f8;
-  border-color: #3a7bd5;
-  color: #3a7bd5;
+  background: #dde2e5;
+  /* border-color: #3a7bd5; */
+  /* color: #3a7bd5; */
 }
 
 /* ========================================================= */
@@ -355,7 +355,7 @@ input:hover,
   background: #fff;
   border: 1px solid #d4d4d4;
   border-radius: 6px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 4px 4px #0004;
   padding: 14px 16px;
   max-width: 280px;
   font-size: 13px;
@@ -456,7 +456,7 @@ input:hover,
   --te-color-flow-4: #0066ff; /* Flow gradient electric blue */
   --te-glow: rgba(0, 210, 255, 0.65);
   --te-glow-intensity: 8px;
-  --te-color-checkmark: #043f93;
+  --te-color-checkmark: #fff;
 }
 
 /* Disabled state overlay styling */
@@ -486,7 +486,7 @@ input:hover,
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #888;
+  background: #3c3f44;
   transition: background 0.3s ease;
   /*box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.6),
    inset 0 1px 1px rgba(255, 255, 255, 0.05);*/
@@ -520,7 +520,7 @@ input:hover,
 .t-energy-inner {
   position: absolute;
   inset: 3px; /* Border thickness */
-  background: #fff;
+  background: #22252c;
   border-radius: 6px;
   z-index: 2;
   display: flex;
@@ -534,7 +534,7 @@ input:hover,
 
 /* Energy emission glow inside the core plate when active */
 .t-energy-input:checked + .t-energy-checkbox .t-energy-inner {
-  background: #fff;
+  /* background: #fff; */
   /*box-shadow:
     inset 0 1px 3px rgba(0, 0, 0, 0.9),
     0 0 8px var(--te-glow);*/

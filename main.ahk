@@ -40,7 +40,7 @@ global RuneEmptyRGB := 0x1a1a1a
 global RuneEmptyRGBVar := 0x181818
 
 global MyGui
-global GUI_WIN_SIZE := "w980 h670"
+global GUI_WIN_SIZE := "w980 h620"
 
 IniPath := A_ScriptDir "\Sacred2Mouselook.ini"
 
