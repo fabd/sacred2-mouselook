@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,13 @@
   <script src="checkbox.js" defer></script>
   <script src="app.js" defer></script>
 </head>
+
 <body>
   <header class="ko-TitleBar">
     <span class="ko-TitleBar-title">Better Mouselook Controls Configurator</span>
     <button class="ko-TitleBar-close" onclick="ahk.gui.Hide()" type="button" aria-label="Hide">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polyline points="6 9 12 15 18 9" />
       </svg>
     </button>
@@ -72,7 +75,8 @@
 
       <div class="ko-Column">
         <div class="ko-Panel">
-          <h2 class="ko-Panel-title relative">Movement Keys<button class="ko-InfoIcon absolute right-[16px] top-[12px]" data-info="movement-controls" type="button">i</button></h2>
+          <h2 class="ko-Panel-title relative">Movement Keys<button class="ko-InfoIcon absolute right-[16px] top-[12px]"
+              data-info="movement-controls" type="button">i</button></h2>
 
           <p class="ko-Panel-subtitle">Make sure these are the same as your in-game controls!</p>
 
@@ -124,22 +128,25 @@
     <div class="ko-Actions">
       <button class="ko-UpdateBtn" id="btnUpdate" type="button">UPDATE SCRIPT</button>
     </div>
-
-    <footer class="ko-Footer">
-      NexusMods <span class="ko-NexusMods-icon"></span>
-
-      <a href="https://www.nexusmods.com/sacred2remaster/mods/36">Better Mouselook Controls</a>
-
-      <span style="width: 30px"></span>
-      Development <a href="https://github.com/fabd/sacred2-mouselook" class=""><svg width="1.03em" height="1em"
-          viewBox="0 0 1536 1504" class="ux-icon ux-icon--fw mr-1 mt-[-0.2em]">
-          <path
-            d="M768 0q209 0 385.5 103T1433 382.5T1536 768q0 251-146.5 451.5T1011 1497q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142q57-6 102.5-18t94-39t81-66.5t53-105T1258 728q0-119-79-206q37-91-8-204q-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27T450 331.5T365 318q-45 113-8 204q-79 87-79 206q0 85 20.5 150T351 983t80.5 67t94 39t102.5 18q-39 36-49 103q-21 10-45 15t-57 5t-65.5-21.5T356 1146q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5t9 14t13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30t69.5 7t55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5T0 768q0-209 103-385.5T382.5 103T768 0zM291 1103q3-7-7-12q-10-3-13 2q-3 7 7 12q9 6 13-2zm31 34q7-5-2-16q-10-9-16-3q-7 5 2 16q10 10 16 3zm30 45q9-7 0-19q-8-13-17-6q-9 5 0 18t17 7zm42 42q8-8-4-19q-12-12-20-3q-9 8 4 19q12 12 20 3zm57 25q3-11-13-16q-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11q-16 0-16 11q0 13 17 11q16 0 16-11zm58-10q-2-11-18-9q-16 3-14 15t18 8t14-14z"
-            fill="currentColor"></path>
-        </svg><span class="">fabd/sacred2-mouselook</span></a>
   </div>
+
+  <footer class="ko-Footer leading-1">
+    <span class="flex items-center">
+      <span class="ko-NexusMods-icon mr-2"></span>
+      <a class="" href="https://www.nexusmods.com/sacred2remaster/mods/36">Mod page on
+        NexusMods</a>
+    </span>
+
+    <span class="ml-8 flex items-center">
+      <svg width="1.25em" height="1.25em" viewBox="0 0 1536 1504" class="mr-2 mt-[-0.2em]">
+        <path
+          d="M768 0q209 0 385.5 103T1433 382.5T1536 768q0 251-146.5 451.5T1011 1497q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142q57-6 102.5-18t94-39t81-66.5t53-105T1258 728q0-119-79-206q37-91-8-204q-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27T450 331.5T365 318q-45 113-8 204q-79 87-79 206q0 85 20.5 150T351 983t80.5 67t94 39t102.5 18q-39 36-49 103q-21 10-45 15t-57 5t-65.5-21.5T356 1146q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5t9 14t13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30t69.5 7t55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5T0 768q0-209 103-385.5T382.5 103T768 0zM291 1103q3-7-7-12q-10-3-13 2q-3 7 7 12q9 6 13-2zm31 34q7-5-2-16q-10-9-16-3q-7 5 2 16q10 10 16 3zm30 45q9-7 0-19q-8-13-17-6q-9 5 0 18t17 7zm42 42q8-8-4-19q-12-12-20-3q-9 8 4 19q12 12 20 3zm57 25q3-11-13-16q-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11q-16 0-16 11q0 13 17 11q16 0 16-11zm58-10q-2-11-18-9q-16 3-14 15t18 8t14-14z"
+          fill="currentColor"></path>
+      </svg>
+      <a class="" href="https://github.com/fabd/sacred2-mouselook" class=""><span class="">Open Source on
+          Github</span></a>
+    </span>
   </footer>
-  </div>
 
   <div class="ko-Popup" id="infoPopup">
     <button class="ko-Popup-close" id="popupClose" type="button">&#x2715;</button>

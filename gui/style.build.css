@@ -203,11 +203,14 @@
   .mt-\[30px\] {
     margin-top: 30px;
   }
-  .mr-1 {
-    margin-right: calc(var(--spacing) * 1);
+  .mr-2 {
+    margin-right: calc(var(--spacing) * 2);
   }
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
+  }
+  .ml-8 {
+    margin-left: calc(var(--spacing) * 8);
   }
   .block {
     display: block;
@@ -224,9 +227,16 @@
   .flex-grow {
     flex-grow: 1;
   }
+  .items-center {
+    align-items: center;
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
+  }
+  .leading-1 {
+    --tw-leading: calc(var(--spacing) * 1);
+    line-height: calc(var(--spacing) * 1);
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
@@ -273,6 +283,29 @@ body {
 .ko-App {
   padding: 24px 20px 32px;
 }
+.ko-Footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #a4a4a5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #0002;
+  a {
+    color: #e7e7e7;
+  }
+  a:hover {
+    color: #fff;
+    text-decoration-line: underline;
+  }
+}
+.ko-NexusMods-icon {
+  width: 24px;
+  height: 24px;
+  background: url(img/nexusmods-icon.png) 50% 50% / contain no-repeat;
+}
 .ko-Columns {
   display: flex;
   align-items: flex-start;
@@ -293,19 +326,6 @@ body {
   color: #111;
   padding-bottom: 4px;
   border-bottom: 2px solid #ccc;
-}
-.ko-Footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 1rem;
-  margin-top: 1rem;
-  border-top: 1px solid #0002;
-}
-.ko-NexusMods-icon {
-  width: 24px;
-  height: 24px;
-  background: url(img/nexusmods-icon.png) 50% 50% / contain no-repeat;
 }
 .ko-Panel {
   background: #fff;
@@ -621,6 +641,10 @@ body {
   inherits: false;
   initial-value: solid;
 }
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-blur {
   syntax: "*";
   inherits: false;
@@ -678,6 +702,7 @@ body {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
       --tw-border-style: solid;
+      --tw-leading: initial;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
