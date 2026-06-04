@@ -25,17 +25,32 @@ Your settings are saved automatically and remembered the next time you launch.
 
 Want to tinker with the code? Here's the setup used to build this.
 
-**Stack:**
+### Stack
 
-- AutoHotkey v2
-- [WebViewToo](https://github.com/The-CoDingman/WebViewToo) (GUI)
+- AutoHotkey v2 (recommended install v1.1 then v2 on top, or just v2)
+- [WebViewToo](https://github.com/The-CoDingman/WebViewToo) (GUI) (very little docs, Claude Code helped a lot)
 - TailwindCSS
 - vanilla JS
 - No build step beyond Tailwind.
 
-**Tools:**
+### Tools
 
 - Git Bash (Git for Windows)
 - VSCode with the AHK++ extension
 - TailwindCSS standalone compiler (`tailwindcss -w -i gui/style.css -o gui/style.build.css`)
 - *(optional)* Claude Code
+
+### Build
+
+Build the app icon
+
+```bash
+winget install ImageMagick.ImageMagick
+magick gui/img/trayicon.png -define icon:auto-resize=16,24,32,48,64 gui/app.ico
+```
+
+Compile the script (update the path to your AHK v2 install in the script)
+
+```bash
+./build.sh
+```
