@@ -16,7 +16,7 @@ CoordMode "Mouse", "Screen"
 
 ; === Config globals & defaults ===
 global MlookRMB := true
-global MlookHybrid := true
+global MlookHybrid := false
 global Key_LookLeft := "a"
 global Key_LookRight := "d"
 global Key_Forward := "w"
