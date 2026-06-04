@@ -51,6 +51,24 @@ document.querySelectorAll(".ko-KeyInput").forEach((input) => {
   input.addEventListener("focus", () => input.select());
 });
 
+// About modal
+const aboutModal = document.getElementById("aboutModal");
+
+document.getElementById("btnAbout").addEventListener("click", () => {
+  aboutModal.classList.add("is-active");
+});
+
+document.getElementById("btnAboutClose").addEventListener("click", () => {
+  aboutModal.classList.remove("is-active");
+});
+
+// Close when clicking the backdrop (outside the box)
+aboutModal.addEventListener("click", (e) => {
+  if (e.target === aboutModal) {
+    aboutModal.classList.remove("is-active");
+  }
+});
+
 // Receive config from AHK and populate form fields
 window.chrome.webview.addEventListener("message", (e) => {
   const cfg = e.data;

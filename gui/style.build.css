@@ -224,11 +224,20 @@
   .inline {
     display: inline;
   }
+  .h-full {
+    height: 100%;
+  }
   .flex-grow {
     flex-grow: 1;
   }
+  .flex-col {
+    flex-direction: column;
+  }
   .items-center {
     align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
   }
   .border {
     border-style: var(--tw-border-style);
@@ -347,6 +356,18 @@ body {
   width: 24px;
   height: 24px;
   background: url(img/nexusmods-icon.png) 50% 50% / contain no-repeat;
+}
+.ko-Footer-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: #c5cdcf;
+  cursor: pointer;
+}
+.ko-Footer-link:hover {
+  color: #fff;
+  text-decoration-line: underline;
 }
 .ko-Columns {
   display: flex;
@@ -578,6 +599,87 @@ body {
 }
 .ko-Popup-close:hover {
   color: #333;
+}
+.ko-AboutModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: #0009;
+  align-items: center;
+  justify-content: center;
+}
+.ko-AboutModal.is-active {
+  display: flex;
+  animation: ko-AboutModal-in 0.1s ease-in;
+}
+@keyframes ko-AboutModal-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.ko-AboutModal-box {
+  position: relative;
+  width: 66%;
+  height: 66%;
+  background: #d3af7d url(img/app-bg.jpg) no-repeat center center / cover;
+  border: 1px solid #855c22;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  padding: 32px 40px;
+  overflow: auto;
+  text-align: center;
+  color: #ccc;
+}
+.ko-AboutModal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  border: none;
+  background: #684d2a8a;
+  color: #ffda83;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.ko-AboutModal-close:hover {
+  background: #684d2aff;
+}
+.ko-AboutModal-title {
+  font-family: "Cinzel", serif;
+  font-variant: small-caps;
+  font-weight: 500;
+  font-size: 150%;
+  line-height: 1;
+  color: var(--color-text-gold);
+  margin-top: 24px;
+}
+.ko-AboutModal-title:first-of-type {
+  margin-top: 0;
+}
+.ko-AboutModal-list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.ko-AboutModal-list li {
+  margin-bottom: 8px;
+}
+.ko-AboutModal-list a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ko-AboutModal-list a:hover {
+  color: var(--color-text-gold);
 }
 .ko-ReloadModal {
   display: none;
