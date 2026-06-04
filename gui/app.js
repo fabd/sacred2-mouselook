@@ -8,11 +8,11 @@ const INFO_TEXTS = {
   "key-combat-art":
     "If set, this key will trigger your selected combat art (same as clicking right mouse button). Useful if Quickcast is off and you use Classic Mouselook. Recommended key: f. Leave this empty to turn it off.",
   "rune-master":
-    "Adds a shortcut — Alt + Shift + Left Click — to quickly open the RuneMaster screen. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+    "<b>Move runes to the RuneMaster with Alt + Left Click</b> (instead of dragging them one by one all the way across the screen). Requires one-time setup.",
   "key-vanity-cam":
     "Activates a vanity camera (like in Skyrim). Nice to show off your character! Press shortcut again (or the ESC key) to toggle off.",
   "movement-controls":
-    "<b>IMPORTANT!</b> Copy your in-game controls here, they must be the same!"
+    "<b>IMPORTANT!</b> Copy your in-game controls here, they must be indentical to your controls in-game otherwise the script won't work!"
 };
 
 const popup = $id("infoPopup");
