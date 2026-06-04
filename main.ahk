@@ -6,7 +6,7 @@ Persistent()
 
 SetWorkingDir(A_ScriptDir)
 
-TraySetIcon(A_ScriptDir "\gui\img\tray-icon.ico")
+TraySetIcon(A_ScriptDir "\gui\img\trayicon.png")
 
 A_IconTip := "Better Mouselook Controls"
 
