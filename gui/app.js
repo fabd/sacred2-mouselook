@@ -12,7 +12,7 @@ const INFO_TEXTS = {
   "key-vanity-cam":
     "Activates a vanity camera (like in Skyrim). Nice to show off your character! Press shortcut again (or the ESC key) to toggle off.",
   "movement-controls":
-    "<b>IMPORTANT!</b> Copy your in-game controls here, they must be indentical to your controls in-game otherwise the script won't work!"
+    "<b>IMPORTANT!</b> Copy your in-game controls here, they must be indentical to your controls in-game otherwise the script won't work!",
 };
 
 const popup = $id("infoPopup");
@@ -131,7 +131,7 @@ $id("btnUpdate").addEventListener("click", () => {
     "key-vanity-cam": val("key-vanity-cam"),
     "rune-master": checked("rune-master"),
   });
-  
+
   $id("reloadModal").classList.add("is-active");
 });
 
