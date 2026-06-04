@@ -26,14 +26,14 @@ global Key_MoveRight := "o"
 global Key_CombatArt := ""
 global Key_VanityCam := "f10"
 global RuneMaster := false
+global RuneMasterX := 0
+global RuneMasterY := 0
 
 ; === Look hotkey state ===
 global LookLeftActiveKey := ""   ; key currently held down by the look-left hotkey ("" = none)
 global LookRightActiveKey := ""  ; key currently held down by the look-right hotkey ("" = none)
 
 ; === Runemaster feature ===
-global RuneX := 2125
-global RuneY := 530
 global RuneXInc := 80
 global RuneSlots := 4
 global RuneEmptyRGB := 0x1a1a1a
@@ -97,8 +97,8 @@ OnNavigationStarting(wvObj, args) {
   ; Allow the local app page (served from the virtual host), the initial
   ; blank page and inline data URIs to load normally inside the webview.
   if (InStr(targetUrl, "://ahk.localhost/")
-    || targetUrl == "about:blank"
-    || InStr(targetUrl, "data:text/html")) {
+  || targetUrl == "about:blank"
+  || InStr(targetUrl, "data:text/html")) {
     return
   }
 
@@ -111,7 +111,7 @@ OnNavigationStarting(wvObj, args) {
 LoadConfig() {
   global MlookRMB, MlookHybrid, Key_LookLeft, Key_LookRight
   global Key_Forward, Key_Backwards, Key_MoveLeft, Key_MoveRight
-  global Key_CombatArt, Key_VanityCam, RuneMaster, IniPath
+  global Key_CombatArt, Key_VanityCam, RuneMaster, RuneMasterX, RuneMasterY, IniPath
   if (!FileExist(IniPath))
     return
   MlookRMB := IniRead(IniPath, "Config", "MlookRMB", "1") = "1"
@@ -125,12 +125,14 @@ LoadConfig() {
   Key_CombatArt := IniRead(IniPath, "Config", "Key_CombatArt", "")
   Key_VanityCam := IniRead(IniPath, "Config", "Key_VanityCam", "f10")
   RuneMaster := IniRead(IniPath, "Config", "RuneMaster", "0") = "1"
+  RuneMasterX := Integer(IniRead(IniPath, "Config", "RuneX", "0"))
+  RuneMasterY := Integer(IniRead(IniPath, "Config", "RuneY", "0"))
 }
 
 SaveConfig(cfg) {
   global MlookRMB, MlookHybrid, Key_LookLeft, Key_LookRight
   global Key_Forward, Key_Backwards, Key_MoveLeft, Key_MoveRight
-  global Key_CombatArt, Key_VanityCam, RuneMaster, IniPath
+  global Key_CombatArt, Key_VanityCam, RuneMaster, RuneMasterX, RuneMasterY, IniPath
   MlookRMB := cfg["mlook-rmb"] = "1"
   MlookHybrid := cfg["mlook-hybrid"] = "1"
   Key_LookLeft := cfg["key-look-left"]
@@ -153,6 +155,8 @@ SaveConfig(cfg) {
   IniWrite(Key_CombatArt, IniPath, "Config", "Key_CombatArt")
   IniWrite(Key_VanityCam, IniPath, "Config", "Key_VanityCam")
   IniWrite(RuneMaster ? "1" : "0", IniPath, "Config", "RuneMaster")
+  IniWrite(RuneMasterX, IniPath, "Config", "RuneX")
+  IniWrite(RuneMasterY, IniPath, "Config", "RuneY")
 }
 
 SyncToWebView() {
@@ -216,8 +220,8 @@ ApplyHotkeys() {
   HotIf
 
   if (RuneMaster) {
-    Hotkey "$!+LButton", RuneMasterShortcut, "On"
-    Hotkey "$!+F10", RuneMasterConfig, "On"
+    Hotkey "$!LButton", RuneMasterShortcut, "On"
+    Hotkey "$!F10", RuneMasterConfig, "On"
   }
 }
 
@@ -367,9 +371,13 @@ DragAcrossScreen(y) {
 }
 
 RuneMasterConfig(*) {
+  global RuneMasterX, RuneMasterY
   MouseGetPos &coordX, &coordY
   SoundBeep
-  MsgBox "RuneX " coordX " RuneY " coordY
+  RuneMasterX := coordX
+  RuneMasterY := coordY
+  MsgBox "RuneMaster Shortcut configured.`n`nUse Alt Left click to move runes from your inventory.`n`nRemember to click the Save button!",
+    "Better Mouselook Controls"
 }
 
 RuneMasterShortcut(*) {
@@ -379,16 +387,16 @@ RuneMasterShortcut(*) {
 
   ; Pick up the rune
   LeftMouseClick()
-  Sleep 50
+  Sleep 16
 
   loop RuneSlots {
-    slotX := RuneX + (A_Index - 1) * RuneXInc
+    slotX := RuneMasterX + (A_Index - 1) * RuneXInc
 
-    if (IsRuneSlotEmpty(slotX, RuneY)) {
-      MouseMove slotX, RuneY, 0
-      Sleep 10
-      LeftMouseClick()
-      Sleep 100
+    if (IsRuneSlotEmpty(slotX, RuneMasterY)) {
+      MouseMove slotX, RuneMasterY, 16
+      Sleep 50 ; let the slot register hover
+      LeftMouseClick() ; drop
+      Sleep 50
 
       MouseMove runePickX, runePickY, 0
       BlockInput "MouseMoveOff"
@@ -433,6 +441,6 @@ IsRuneSlotEmpty(x, y) {
 
 LeftMouseClick(*) {
   Click "LButton down"
-  Sleep 10
+  Sleep 50
   Click "LButton up"
 }

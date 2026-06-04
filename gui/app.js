@@ -71,6 +71,24 @@ aboutModal.addEventListener("click", (e) => {
   }
 });
 
+// Setup modal (RuneMaster)
+const setupModal = $id("setupModal");
+
+$id("btnRuneSetup").addEventListener("click", () => {
+  setupModal.classList.add("is-active");
+});
+
+$id("btnSetupClose").addEventListener("click", () => {
+  setupModal.classList.remove("is-active");
+});
+
+// Close when clicking the backdrop (outside the box)
+setupModal.addEventListener("click", (e) => {
+  if (e.target === setupModal) {
+    setupModal.classList.remove("is-active");
+  }
+});
+
 // Receive config from AHK and populate form fields
 window.chrome.webview.addEventListener("message", (e) => {
   const cfg = e.data;
@@ -113,6 +131,7 @@ $id("btnUpdate").addEventListener("click", () => {
     "key-vanity-cam": val("key-vanity-cam"),
     "rune-master": checked("rune-master"),
   });
+  
   $id("reloadModal").classList.add("is-active");
 });
 
