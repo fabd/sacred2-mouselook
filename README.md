@@ -1,34 +1,41 @@
-# Sacred 2 Remaster — Better Mouselook Controls
+# Better Mouselook Controls for Sacred 2 Remaster
 
 An AutoHotkey v2 script that adds mouselook and quality-of-life enhancements to Sacred 2 Remaster, with a user-friendly configurator.
 
+<p align="center">
+  <img src="screenshot.png" alt="The Better Mouselook Controls configurator" width="720">
+</p>
+
 ## Features
 
-- **Mouselook with right mouse button** — hold RMB to control the camera
-- **Mouselook while moving** — mouse steers the camera while a movement key (Forward/Backwards) is held
-- **RuneMaster shortcut** — Alt+Shift+Left Click to move runes to the RuneMaster slots
+- **Mouselook with Right Mouse Button** : hold the right mouse button to rotate the camera, enables strafe keys. Classic MMO-style controls.
+- **Mouselook while Moving** : the camera follows your mouse automatically whenever you run forward or backward, so you can steer without holding any button. Easy on the wrists.
+- **Vanity Camera** — similar to the idle camera in Skyrim that circles around your character. Toggle it on/off with a key (default **F10**) or **ESC**.
+- **RuneMaster Shortcut** : moves runes from the inventory to the RuneMaster slot, no dragging required (this really should be in the game but hey).
+- **Combat Art Key** : if you use Classic mouselook and NOT quickcast, then you need a key shortcut to activate combat arts.
 
-App notes:
+Your settings are saved automatically and remembered the next time you launch.
 
-- **Persistent settings** — configuration saved to an INI file and restored on next launch
-- **System tray icon** — click the icon in the system tray, or select "Open Configurator" in the right-click menu to reopen the configurator
+## Links
 
-## Usage
+- 🔗 [Mod page on NexusMods](https://www.nexusmods.com/sacred2remaster/mods/36)
+- 👾 [Sacred 2 Remaster on Steam](https://store.steampowered.com/app/3906660/Sacred_2_Remaster/)
 
-1. Run `main.ahk` with AutoHotkey v2
-2. On first launch the configurator opens — set your options and click **Update Script**
-3. The script stays active in the system tray; double-click the tray icon to reopen the configurator
+## For developers
 
-## Dev Setup
+Want to tinker with the code? Here's the setup used to build this.
 
-- Git Bash (git for windows)
-- VSCode with AHK++ extension
-- TailwindCSS standalone
-- (optional) Claude Code
-- (optional) Sublime Merge
-- (optional) Github CLI
+**Stack:**
 
-## Requirements
+- AutoHotkey v2
+- [WebViewToo](https://github.com/The-CoDingman/WebViewToo) (GUI)
+- TailwindCSS
+- vanilla JS
+- No build step beyond Tailwind.
 
-- [AutoHotkey v2](https://www.autohotkey.com/)
-- Sacred 2 Remaster
+**Tools:**
+
+- Git Bash (Git for Windows)
+- VSCode with the AHK++ extension
+- TailwindCSS standalone compiler (`tailwindcss -w -i gui/style.css -o gui/style.build.css`)
+- *(optional)* Claude Code
