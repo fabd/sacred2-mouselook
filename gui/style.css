@@ -129,7 +129,7 @@ input:hover,
   background: #444 url(img/footer-bg.png) no-repeat 0 0 / cover;
 
   @apply bg-[#2224];
-  @apply flex items-center justify-center;
+  @apply flex items-center justify-center gap-[30px];
   border-top: 1px solid #0002;
 
   a {
