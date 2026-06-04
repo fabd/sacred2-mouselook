@@ -1,4 +1,4 @@
-# Sacred2MouselookDEV2
+# Better Mouselook Controls for Sacred 2 Remaster
 
 A Autohotkey v2 script to enhance Sacred 2 Remaster mouse and keyboard controls.
 
@@ -23,15 +23,18 @@ The user runs the standalone tailwindcss compiler while working on the project, 
 ## Project structure
 
 ```
+docs/                        example code for AHK v2 features
 gui/                         files for the WebView2 interface
   img/                       all images go here
   index.hml                 
   style.build.css            output from tailwindcss, ignore
   style.css                  the main stylesheet
+lib/
+  WebView2/                  the WebViewToo ahk library and its dependencies
+  JSON.ahk                   thqby's JSON library
 ```
 
 ## Coding Standards
-
 
 - Use 2-space indentation for CSS, JS and AHK. Never use Tabs
 
@@ -51,7 +54,6 @@ gui/                         files for the WebView2 interface
 - use the pattern `ko-(component name)-(descendant)--(modifier)` (eg. `ko-Dialog-title`)
 - BEM modifier `--` for component variants, eg. `ko-Dialog--small`
 - use `is-` prefix for runtime state (eg. `is-active`)
-
 
 ## Documentation
 
