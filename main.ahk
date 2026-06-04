@@ -4,9 +4,44 @@ Persistent()
 #Include lib\WebView2\WebViewToo.ahk
 #Include lib\JSON.ahk
 
+; ===== Ahk2Exe compile config =====
+;@Ahk2Exe-SetMainIcon gui/app.ico
+;@Ahk2Exe-SetName Better Mouselook Controls
+;@Ahk2Exe-SetDescription Better Mouselook Controls for Sacred 2 Remaster
+;@Ahk2Exe-SetVersion 2.0.0
+
+; --- WebView2 loader (both bitnesses; correct one extracted at runtime) ---
+;@Ahk2Exe-AddResource lib\WebView2\32bit\WebView2Loader.dll, 32bit\WebView2Loader.dll
+;@Ahk2Exe-AddResource lib\WebView2\64bit\WebView2Loader.dll, 64bit\WebView2Loader.dll
+
+; --- GUI assets (served by WebViewToo's ExeRead at https://ahk.localhost/...) ---
+;@Ahk2Exe-AddResource gui\index.html, GUI\INDEX.HTML
+;@Ahk2Exe-AddResource gui\style.build.css, GUI\STYLE.BUILD.CSS
+;@Ahk2Exe-AddResource gui\app.js, GUI\APP.JS
+;@Ahk2Exe-AddResource gui\checkbox.js, GUI\CHECKBOX.JS
+;@Ahk2Exe-AddResource gui\font\Cinzel-Medium.ttf, GUI\FONT\CINZEL-MEDIUM.TTF
+;@Ahk2Exe-AddResource gui\img\app-bg.jpg, GUI\IMG\APP-BG.JPG
+;@Ahk2Exe-AddResource gui\img\footer-bg.png, GUI\IMG\FOOTER-BG.PNG
+;@Ahk2Exe-AddResource gui\img\nexusmods-icon.png, GUI\IMG\NEXUSMODS-ICON.PNG
+;@Ahk2Exe-AddResource gui\img\button-sprite.png, GUI\IMG\BUTTON-SPRITE.PNG
+;@Ahk2Exe-AddResource gui\img\runemaster-setup.png, GUI\IMG\RUNEMASTER-SETUP.PNG
+;@Ahk2Exe-AddResource gui\img\trayicon.png, GUI\IMG\TRAYICON.PNG
+
 SetWorkingDir(A_ScriptDir)
 
-TraySetIcon(A_ScriptDir "\gui\img\trayicon.png")
+; Extract the bitness-matched WebView2 loader from the exe's resources at runtime.
+; No-ops (and keeps the relative default) when running uncompiled.
+LoaderPath := "WebView2Loader.dll"
+if (A_IsCompiled) {
+  Bits := A_PtrSize * 8
+  WebViewCtrl.CreateFileFromResource(Bits "bit\WebView2Loader.dll")
+  LoaderPath := WebViewCtrl.TempDir "\" Bits "bit\WebView2Loader.dll"
+}
+
+; When compiled the tray defaults to the exe's app.ico (set via SetMainIcon above);
+; the PNG only exists on disk when running the raw script.
+if (!A_IsCompiled)
+  TraySetIcon(A_ScriptDir "\gui\img\trayicon.png")
 
 A_IconTip := "Better Mouselook Controls"
 
@@ -56,7 +91,7 @@ A_TrayMenu.Add("Quit", (*) => ExitApp())
 A_TrayMenu.Default := "Open Configurator"
 A_TrayMenu.ClickCount := 1 ; use single-click to show the window
 
-MyGui := WebViewGui("-Caption", "Better Mouselook Controls Configurator")
+MyGui := WebViewGui("-Caption", "Better Mouselook Controls Configurator", , { DllPath: LoaderPath })
 
 ; Register the NavigationStarting event
 MyGui.NavigationStarting(OnNavigationStarting)
