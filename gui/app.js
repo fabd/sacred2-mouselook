@@ -1,3 +1,5 @@
+const $id = (s) => document.getElementById(s);
+
 const INFO_TEXTS = {
   "mlook-rmb":
     "<b>Hold the right mouse button to rotate the camera</b>. When holding the right mouse button, the turn left/right keys will strafe instead (move left/right). Classic MMO controls. <b>NOTE!</b> You will have to use Shift + RMB to eat runes or equip items.",
@@ -13,8 +15,8 @@ const INFO_TEXTS = {
     "<b>IMPORTANT!</b> Copy your in-game controls here, they must be the same!"
 };
 
-const popup = document.getElementById("infoPopup");
-const popupText = document.getElementById("popupText");
+const popup = $id("infoPopup");
+const popupText = $id("popupText");
 
 // Position and show popup near the clicked info button
 function showPopup(btn) {
@@ -52,13 +54,13 @@ document.querySelectorAll(".ko-KeyInput").forEach((input) => {
 });
 
 // About modal
-const aboutModal = document.getElementById("aboutModal");
+const aboutModal = $id("aboutModal");
 
-document.getElementById("btnAbout").addEventListener("click", () => {
+$id("btnAbout").addEventListener("click", () => {
   aboutModal.classList.add("is-active");
 });
 
-document.getElementById("btnAboutClose").addEventListener("click", () => {
+$id("btnAboutClose").addEventListener("click", () => {
   aboutModal.classList.remove("is-active");
 });
 
@@ -73,10 +75,10 @@ aboutModal.addEventListener("click", (e) => {
 window.chrome.webview.addEventListener("message", (e) => {
   const cfg = e.data;
   const setCheck = (id, val) => {
-    document.getElementById(id).checked = val === "1";
+    $id(id).checked = val === "1";
   };
   const setVal = (id, val) => {
-    document.getElementById(id).value = val;
+    $id(id).value = val;
   };
   setCheck("mlook-rmb", cfg["mlook-rmb"]);
   setCheck("mlook-hybrid", cfg["mlook-hybrid"]);
@@ -92,8 +94,8 @@ window.chrome.webview.addEventListener("message", (e) => {
 });
 
 // Update script button
-document.getElementById("btnUpdate").addEventListener("click", () => {
-  const get = (id) => document.getElementById(id);
+$id("btnUpdate").addEventListener("click", () => {
+  const get = (id) => $id(id);
   const checked = (id) => (get(id).checked ? "1" : "0");
   const val = (id) => get(id).value.trim();
 
@@ -111,10 +113,10 @@ document.getElementById("btnUpdate").addEventListener("click", () => {
     "key-vanity-cam": val("key-vanity-cam"),
     "rune-master": checked("rune-master"),
   });
-  document.getElementById("reloadModal").classList.add("is-active");
+  $id("reloadModal").classList.add("is-active");
 });
 
 // Reload button
-document.getElementById("btnReload").addEventListener("click", () => {
+$id("btnReload").addEventListener("click", () => {
   window.chrome.webview.postMessage({ type: "reload-ahk" });
 });
