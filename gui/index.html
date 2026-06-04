@@ -130,7 +130,7 @@
     </div>
 
     <div class="ko-Actions">
-      <button class="ko-UpdateBtn" id="btnUpdate" type="button">
+      <button class="ko-UpdateBtn w-[300px]" id="btnUpdate" type="button">
         <span class="ko-UpdateBtn-left"></span>
         <span class="ko-UpdateBtn-mid">Save &amp; Reload</span>
         <span class="ko-UpdateBtn-right"></span>
@@ -157,7 +157,11 @@
 
 
     <span class="flex items-center text-[#fff]">
-      <svg class="mr-1 mt-[-0.1em] w-[25px] h-auto text-[#c59e33]" xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 640 640" ><path fill="currentColor" d="M442.9 144C415.6 144 389.9 157.1 373.9 179.2L339.5 226.8C335 233 327.8 236.7 320.1 236.7C312.4 236.7 305.2 233 300.7 226.8L266.3 179.2C250.3 157.1 224.6 144 197.3 144C150.3 144 112.2 182.1 112.2 229.1C112.2 279 144.2 327.5 180.3 371.4C221.4 421.4 271.7 465.4 306.2 491.7C309.4 494.1 314.1 495.9 320.2 495.9C326.3 495.9 331 494.1 334.2 491.7C368.7 465.4 419 421.3 460.1 371.4C496.3 327.5 528.2 279 528.2 229.1C528.2 182.1 490.1 144 443.1 144zM335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1C576 297.7 533.1 358 496.9 401.9C452.8 455.5 399.6 502 363.1 529.8C350.8 539.2 335.6 543.9 320 543.9C304.4 543.9 289.2 539.2 276.9 529.8C240.4 502 187.2 455.5 143.1 402C106.9 358.1 64 297.7 64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1L320 171.8L335 151.1z"/></svg>
+      <svg class="mr-1 mt-[-0.1em] w-[25px] h-auto text-[#c59e33]" xmlns="http://www.w3.org/2000/svg" width="1.25em"
+        height="1.25em" viewBox="0 0 640 640">
+        <path fill="currentColor"
+          d="M442.9 144C415.6 144 389.9 157.1 373.9 179.2L339.5 226.8C335 233 327.8 236.7 320.1 236.7C312.4 236.7 305.2 233 300.7 226.8L266.3 179.2C250.3 157.1 224.6 144 197.3 144C150.3 144 112.2 182.1 112.2 229.1C112.2 279 144.2 327.5 180.3 371.4C221.4 421.4 271.7 465.4 306.2 491.7C309.4 494.1 314.1 495.9 320.2 495.9C326.3 495.9 331 494.1 334.2 491.7C368.7 465.4 419 421.3 460.1 371.4C496.3 327.5 528.2 279 528.2 229.1C528.2 182.1 490.1 144 443.1 144zM335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1C576 297.7 533.1 358 496.9 401.9C452.8 455.5 399.6 502 363.1 529.8C350.8 539.2 335.6 543.9 320 543.9C304.4 543.9 289.2 539.2 276.9 529.8C240.4 502 187.2 455.5 143.1 402C106.9 358.1 64 297.7 64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1L320 171.8L335 151.1z" />
+      </svg>
       <button class="ko-Footer-link" id="btnAbout" type="button">
         About
       </button>
@@ -168,10 +172,10 @@
     <p class="ko-Popup-text" id="popupText"></p>
   </div>
 
-  <div class="ko-AboutModal" id="aboutModal">
-    <div class="ko-AboutModal-box">
+  <div class="ko-Modal" id="aboutModal">
+    <div class="ko-Modal-box">
       <div class="flex flex-col justify-center h-full">
-        <button class="ko-AboutModal-close" id="btnAboutClose" type="button" aria-label="Close">
+        <button class="ko-Modal-close" id="btnAboutClose" type="button" aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="18" y1="6" x2="6" y2="18" />
@@ -179,8 +183,8 @@
           </svg>
         </button>
 
-        <h2 class="ko-AboutModal-title">Check out my other mods:</h2>
-        <ul class="ko-AboutModal-list">
+        <h2 class="ko-Modal-title">Check out my other mods:</h2>
+        <ul class="ko-Modal-list">
           <li><a class="ko-TEnergyText" href="https://www.nexusmods.com/skyrimspecialedition/mods/1429">Better Dialogue
               Controls</a> for Skyrim
             Special Edition</li>
@@ -189,8 +193,8 @@
             Skyrim Special Edition</li>
         </ul>
 
-        <h2 class="ko-AboutModal-title">Other game companions:</h2>
-        <ul class="ko-AboutModal-list">
+        <h2 class="ko-Modal-title">Other game companions:</h2>
+        <ul class="ko-Modal-list">
           <li><a class="ko-TEnergyText" href="https://fabd.github.io/diablo2-runewizard/">Runewizard</a> for Diablo II
             Resurrected</li>
         </ul>
@@ -198,10 +202,10 @@
     </div>
   </div>
 
-  <div class="ko-AboutModal" id="setupModal">
-    <div class="ko-AboutModal-box">
+  <div class="ko-Modal" id="setupModal">
+    <div class="ko-Modal-box">
       <div class="flex flex-col justify-center h-full text-left">
-        <button class="ko-AboutModal-close" id="btnSetupClose" type="button" aria-label="Close">
+        <button class="ko-Modal-close" id="btnSetupClose" type="button" aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="18" y1="6" x2="6" y2="18" />
@@ -209,28 +213,42 @@
           </svg>
         </button>
 
-        <h2 class="ko-AboutModal-title mb-4">Setup the RuneMaster Shortcut</h2>
+        <h2 class="ko-Modal-title mb-4">Setup the RuneMaster Shortcut</h2>
 
         <div>
-          This shortcut needs a little setup.     
-          Go to the RuneMaster NPC and interact with it.       
+          This shortcut needs a little setup.
+          Go to the RuneMaster NPC and interact with it.
           Point the mouse cursor at the center of the first rune slot:
 
           <img src="img/runemaster-setup.png" class="w-[432px] text-center border border-[#444] my-4 mx-auto
           " />
 
           Now press <strong>ALT + F10</strong>. When you hear a beep, the coordinates
-          have been recorded and the shortcut is ready. Use <strong>Alt Left Click</strong> in your inventory to move runes to the Runemaster.
+          have been recorded and the shortcut is ready. Use <strong>Alt Left Click</strong> in your inventory to move
+          runes to the Runemaster.
 
         </div>
       </div>
     </div>
   </div>
 
-  <div class="ko-ReloadModal" id="reloadModal">
-    <div class="ko-ReloadModal-box">
-      <p class="ko-ReloadModal-text">Click reload to activate the changes</p>
-      <button class="ko-ReloadModal-btn" id="btnReload" type="button">Reload</button>
+  <div class="ko-Modal" id="reloadModal">
+    <div class="ko-Modal-box">
+      <div class="flex flex-col justify-center h-full text-center">
+
+        <h2 class="ko-Modal-title ko-Modal-title--green mb-4">Settings Saved</h2>
+        <p class="mb-4">The script will reload to apply the changes, and then it will <b>minimize</b>.</p>
+        <p class="mb-4">To change options later click the icon in the system tray.</p>
+
+        <button id="btnReload" class="ko-UpdateBtn mx-auto" type="button" style="--scale: calc(40 / 104);">
+          <span class="ko-UpdateBtn-left"></span>
+          <span class="ko-UpdateBtn-mid">Reload</span>
+          <span class="ko-UpdateBtn-right"></span>
+        </button>
+
+
+        <!-- <button class="ko-ReloadModal-btn" id="btnReload" type="button">Reload</button> -->
+      </div>
     </div>
   </div>
 </body>

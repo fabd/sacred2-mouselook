@@ -391,7 +391,6 @@ input:hover,
   display: inline-flex;
   align-items: stretch;
   height: calc(104px * var(--scale)); /* = 80px */
-  min-width: 300px;
   padding: 0;
   border: none;
   background: none;
@@ -512,7 +511,7 @@ input:hover,
 /* about modal */
 /* ========================================================= */
 
-.ko-AboutModal {
+.ko-Modal {
   display: none;
   position: fixed;
   inset: 0;
@@ -523,12 +522,12 @@ input:hover,
   justify-content: center;
 }
 
-.ko-AboutModal.is-active {
+.ko-Modal.is-active {
   display: flex;
-  animation: ko-AboutModal-in 0.1s ease-in;
+  animation: ko-Modal-in 0.1s ease-in;
 }
 
-@keyframes ko-AboutModal-in {
+@keyframes ko-Modal-in {
   from {
     opacity: 0;
   }
@@ -537,7 +536,7 @@ input:hover,
   }
 }
 
-.ko-AboutModal-box {
+.ko-Modal-box {
   position: relative;
   width: 66%;
   height: 66%;
@@ -552,7 +551,7 @@ input:hover,
   color: #ccc;
 }
 
-.ko-AboutModal-close {
+.ko-Modal-close {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -569,11 +568,11 @@ input:hover,
   transition: background 0.15s;
 }
 
-.ko-AboutModal-close:hover {
+.ko-Modal-close:hover {
   background: #684d2aff;
 }
 
-.ko-AboutModal-title {
+.ko-Modal-title {
   font-family: "Cinzel", serif;
   font-variant: small-caps;
   font-weight: 500;
@@ -582,65 +581,33 @@ input:hover,
   color: var(--color-text-gold);
   margin-top: 24px;
 }
+.ko-Modal-title--green {
+  color: #4f4;
+}
 
-.ko-AboutModal-title:first-of-type {
+
+.ko-Modal-title:first-of-type {
   margin-top: 0;
 }
 
-.ko-AboutModal-list {
+.ko-Modal-list {
   margin: 12px 0 0;
   padding: 0;
   list-style: none;
 }
 
-.ko-AboutModal-list li {
+.ko-Modal-list li {
   margin-bottom: 8px;
 }
 
-.ko-AboutModal-list a {
+.ko-Modal-list a {
   color: #fff;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.ko-AboutModal-list a:hover {
+.ko-Modal-list a:hover {
   color: var(--color-text-gold);
-}
-
-/* ========================================================= */
-/* reload modal */
-/* ========================================================= */
-
-.ko-ReloadModal {
-  display: none;
-  position: fixed;
-  inset: 30px;
-  z-index: 200;
-  background: #111;
-  border: 1px solid #855c22;
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.ko-ReloadModal.is-active {
-  display: flex;
-}
-
-.ko-ReloadModal-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.ko-ReloadModal-text {
-  font-size: 16px;
-  font-weight: 600;
-  color: #222;
-  text-align: center;
 }
 
 .ko-ReloadModal-btn {
