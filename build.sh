@@ -20,7 +20,7 @@ cd "$(dirname "$0")"
 # Override these if your AutoHotkey install lives elsewhere.
 AHK2EXE="${AHK2EXE:-/c/Apps/AutoHotkey/Compiler/Ahk2Exe.exe}"
 BASE="${BASE:-/c/Apps/AutoHotkey/v2/AutoHotkey64.exe}"   # 64-bit base
-OUT="Sacred2-BMC.exe"
+OUT="dist/Better-Mouse-Controls.exe"
 
 # ----- colors (disabled when not a TTY or when NO_COLOR is set) -----
 if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then
