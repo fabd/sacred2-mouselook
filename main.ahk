@@ -5,10 +5,11 @@ Persistent()
 #Include lib\JSON.ahk
 
 ; ===== Ahk2Exe compile config =====
+;@Ahk2Exe-SetDescription Game companion for Sacred 2 Remaster
 ;@Ahk2Exe-SetMainIcon gui/app.ico
 ;@Ahk2Exe-SetName Better Mouselook Controls
-;@Ahk2Exe-SetDescription Better Mouselook Controls for Sacred 2 Remaster
 ;@Ahk2Exe-SetVersion 2.0.0
+;@Ahk2Exe-SetCopyright © 2026 Fabrice Denis. Free and open source.
 
 ; --- WebView2 loader (both bitnesses; correct one extracted at runtime) ---
 ;@Ahk2Exe-AddResource lib\WebView2\32bit\WebView2Loader.dll, 32bit\WebView2Loader.dll
