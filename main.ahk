@@ -250,14 +250,18 @@ ApplyHotkeys() {
     HotIfWinActive
   }
 
-  HotIf IsMlookRMBActive
-  Hotkey "$RButton", RButtonDown, "On"
-  Hotkey "$RButton up", RButtonUp, "On"
-  HotIf
+  if (MlookRMB) {
+    HotIfWinActive "ahk_class The Forge"
+    Hotkey "$RButton", RButtonDown, "On"
+    Hotkey "$RButton up", RButtonUp, "On"
+    HotIfWinActive
+  }
 
   if (RuneMaster) {
+    HotIfWinActive "ahk_class The Forge"
     Hotkey "$!LButton", RuneMasterShortcut, "On"
     Hotkey "$!F10", RuneMasterConfig, "On"
+    HotIfWinActive
   }
 }
 
