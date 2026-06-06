@@ -215,8 +215,6 @@ SyncToWebView() {
   MyGui.PostWebMessageAsJson(JSON.Stringify(cfg))
 }
 
-IsMlookRMBActive(*) => MlookRMB && WinActive("ahk_class The Forge")
-
 ApplyHotkeys() {
   global Key_VanityCam
 
