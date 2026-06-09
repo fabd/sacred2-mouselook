@@ -19,7 +19,7 @@ Persistent()
 ;@Ahk2Exe-AddResource gui\index.html, GUI\INDEX.HTML
 ;@Ahk2Exe-AddResource gui\style.build.css, GUI\STYLE.BUILD.CSS
 ;@Ahk2Exe-AddResource gui\app.js, GUI\APP.JS
-;@Ahk2Exe-AddResource gui\checkbox.js, GUI\CHECKBOX.JS
+;@Ahk2Exe-AddResource gui\components.js, GUI\COMPONENTS.JS
 ;@Ahk2Exe-AddResource gui\font\Cinzel-Medium.ttf, GUI\FONT\CINZEL-MEDIUM.TTF
 ;@Ahk2Exe-AddResource gui\img\app-bg.jpg, GUI\IMG\APP-BG.JPG
 ;@Ahk2Exe-AddResource gui\img\footer-bg.png, GUI\IMG\FOOTER-BG.PNG
