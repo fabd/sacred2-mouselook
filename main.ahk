@@ -27,6 +27,7 @@ Persistent()
 ;@Ahk2Exe-AddResource gui\img\button-sprite.png, GUI\IMG\BUTTON-SPRITE.PNG
 ;@Ahk2Exe-AddResource gui\img\runemaster-setup.png, GUI\IMG\RUNEMASTER-SETUP.PNG
 ;@Ahk2Exe-AddResource gui\img\trayicon.png, GUI\IMG\TRAYICON.PNG
+;@Ahk2Exe-AddResource gui\img\desktop-shortcut.png, GUI\IMG\DESKTOP-SHORTCUT.PNG
 
 SetWorkingDir(A_ScriptDir)
 
