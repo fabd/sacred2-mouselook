@@ -392,7 +392,9 @@ ToggleDrag(*) {
   }
 
   dragging := true
-  y := A_ScreenHeight - 1
+  ; for whatever reason middle-click in bottom or top edge doesn't work
+  ;  so move 15px away from edge.
+  y := A_ScreenHeight - 15
   Sleep 50
   MouseMove 0, y, 1
   Sleep 50
@@ -414,7 +416,8 @@ DragAcrossScreen(y) {
   x += 1
   MouseMove x, y, 0
 
-  if x >= A_ScreenWidth - 1 {
+  ; move until before the divine skill, to avoid showing the popup
+  if x >= (A_ScreenWidth / 2 - 75) {
     Click "Middle Up"
     Sleep 10
     MouseMove 0, y, 0
