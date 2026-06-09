@@ -11,9 +11,8 @@ Persistent()
 ;@Ahk2Exe-SetVersion 2.2.0
 ;@Ahk2Exe-SetCopyright © 2026 Fabrice Denis. Free and open source.
 
-; --- WebView2 loader (both bitnesses; correct one extracted at runtime) ---
-;@Ahk2Exe-AddResource lib\WebView2\32bit\WebView2Loader.dll, 32bit\WebView2Loader.dll
-;@Ahk2Exe-AddResource lib\WebView2\64bit\WebView2Loader.dll, 64bit\WebView2Loader.dll
+; --- WebView2 loader (64-bit; matches the AutoHotkey64 base in build.sh) ---
+;@Ahk2Exe-AddResource lib\WebView2\64bit\WebView2Loader.dll, WebView2Loader.dll
 
 ; --- GUI assets (served by WebViewToo's ExeRead at https://ahk.localhost/...) ---
 ;@Ahk2Exe-AddResource gui\index.html, GUI\INDEX.HTML
@@ -31,13 +30,12 @@ Persistent()
 
 SetWorkingDir(A_ScriptDir)
 
-; Extract the bitness-matched WebView2 loader from the exe's resources at runtime.
+; Extract the bundled 64-bit WebView2 loader from the exe's resources at runtime.
 ; No-ops (and keeps the relative default) when running uncompiled.
 LoaderPath := "WebView2Loader.dll"
 if (A_IsCompiled) {
-  Bits := A_PtrSize * 8
-  WebViewCtrl.CreateFileFromResource(Bits "bit\WebView2Loader.dll")
-  LoaderPath := WebViewCtrl.TempDir "\" Bits "bit\WebView2Loader.dll"
+  WebViewCtrl.CreateFileFromResource("WebView2Loader.dll")
+  LoaderPath := WebViewCtrl.TempDir "\WebView2Loader.dll"
 }
 
 ; When compiled the tray defaults to the exe's app.ico (set via SetMainIcon above);
