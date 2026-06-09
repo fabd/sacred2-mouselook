@@ -116,4 +116,40 @@ class TEnergyCheckbox extends HTMLElement {
   }
 }
 
+/**
+ * <cool-button label="Reload" height="40"></cool-button>
+ *   label  : text shown on the middle sprite
+ *   height : rendered art height in px (sets --scale: calc(height / 104));
+ *            omit to use the CSS default (60px)
+ */
+class CoolButton extends HTMLElement {
+  static get observedAttributes() {
+    return ["label", "height"];
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  attributeChangedCallback() {
+    if (this.isConnected) this.render();
+  }
+
+  render() {
+    const label = this.getAttribute("label") || "";
+    const height = this.getAttribute("height");
+    if (height) {
+      this.style.setProperty("--scale", `calc(${parseFloat(height)} / 104)`);
+    }
+    this.classList.add("ko-UpdateBtn");
+    this.innerHTML = `
+      <span class="ko-UpdateBtn-left"></span>
+      <span class="ko-UpdateBtn-mid">${label}</span>
+      <span class="ko-UpdateBtn-right"></span>
+    `;
+  }
+}
+
+customElements.define("cool-button", CoolButton);
+
 customElements.define("t-energy-checkbox", TEnergyCheckbox);

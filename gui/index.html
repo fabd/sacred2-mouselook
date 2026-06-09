@@ -130,11 +130,7 @@
     </div>
 
     <div class="ko-Actions">
-      <button class="ko-UpdateBtn w-[300px]" id="btnUpdate" type="button">
-        <span class="ko-UpdateBtn-left"></span>
-        <span class="ko-UpdateBtn-mid">Save &amp; Reload</span>
-        <span class="ko-UpdateBtn-right"></span>
-      </button>
+      <cool-button class="w-[300px]" id="btnUpdate" label="Save &amp; Reload"></cool-button>
     </div>
   </div>
 
@@ -248,14 +244,7 @@
           <img src="img/trayicon.png" class="inline-block w-[1.2em] h-[1.2em] align-[-0.25em] mx-1" alt="tray icon">
           in the system tray.</p>
 
-        <button id="btnReload" class="ko-UpdateBtn mx-auto" type="button" style="--scale: calc(40 / 104);">
-          <span class="ko-UpdateBtn-left"></span>
-          <span class="ko-UpdateBtn-mid">Reload</span>
-          <span class="ko-UpdateBtn-right"></span>
-        </button>
-
-
-        <!-- <button class="ko-ReloadModal-btn" id="btnReload" type="button">Reload</button> -->
+        <cool-button id="btnReload" class="mx-auto" height="40" label="Reload"></cool-button>
       </div>
     </div>
   </div>
@@ -278,11 +267,7 @@
         <img src="img/desktop-shortcut.png" class="w-[300px] h-[150px] object-cover border border-[#444] my-4 mx-auto" />
 
         <div class="flex items-center justify-center gap-[2rem] mt-2">
-          <button id="btnCreateShortcut" class="ko-UpdateBtn" type="button" style="--scale: calc(40 / 104);">
-            <span class="ko-UpdateBtn-left"></span>
-            <span class="ko-UpdateBtn-mid">&nbsp;Create shortcut&nbsp;</span>
-            <span class="ko-UpdateBtn-right"></span>
-          </button>
+          <cool-button id="btnCreateShortcut" height="40" label="&nbsp;Create shortcut&nbsp;"></cool-button>
           <button id="btnSkipShortcut" class="ko-LinkBtn" type="button">Skip</button>
         </div>
       </div>
