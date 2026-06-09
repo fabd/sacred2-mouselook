@@ -15,7 +15,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 # ----- edit this for each release -----
-VERSION="2.1.0"
+VERSION="2.2.0"
 
 # ----- derived/config -----
 TAG="v${VERSION}"
@@ -25,7 +25,7 @@ REPO="fabd/sacred2-mouselook"
 [ -f "$EXE" ] || { echo "✖ $EXE not found — run ./build.sh first." >&2; exit 1; }
 
 gh release create "$TAG" \
-  "${EXE}#Better-Mouselook-Controls-v2-1.exe" \
+  "${EXE}#Better-Mouselook-Controls-v2-2.exe" \
   --repo "$REPO" \
   --title "Better Mouselook Controls for Sacred 2 Remaster ${TAG}" \
   --notes "(edit draft on the website)" \
