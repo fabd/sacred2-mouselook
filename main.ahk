@@ -80,6 +80,9 @@ global GUI_WIN_SIZE := "w980 h620"
 
 IniPath := A_ScriptDir "\Sacred2Mouselook.ini"
 
+; Captured before LoadConfig so the GUI can offer a one-time desktop shortcut.
+global FirstRun := !FileExist(IniPath)
+
 LoadConfig()
 
 ApplyHotkeys()
@@ -123,6 +126,18 @@ OnWebMessage(wv, args) {
     SaveConfig(cfg)
     return
   }
+  if (cfg["type"] = "create-shortcut") {
+    CreateDesktopShortcut()
+    return
+  }
+}
+
+CreateDesktopShortcut() {
+  shortcut := A_Desktop "\Sacred2BMC.lnk"
+  ; The compiled exe carries the icon embedded (SetMainIcon); the .ico only
+  ; exists on disk when running the raw script.
+  iconPath := A_IsCompiled ? A_ScriptFullPath : A_ScriptDir "\gui\app.ico"
+  FileCreateShortcut(A_ScriptFullPath, shortcut, A_ScriptDir, , "Better Mouselook Controls", iconPath)
 }
 
 ; Handle links clicked in the webview, open them in user's browser.
@@ -198,8 +213,9 @@ SaveConfig(cfg) {
 SyncToWebView() {
   global MlookRMB, MlookHybrid, Key_LookLeft, Key_LookRight
   global Key_Forward, Key_Backwards, Key_MoveLeft, Key_MoveRight
-  global Key_CombatArt, Key_VanityCam, RuneMaster, MyGui
+  global Key_CombatArt, Key_VanityCam, RuneMaster, MyGui, FirstRun
   cfg := Map(
+    "first-run", FirstRun ? "1" : "0",
     "mlook-rmb", MlookRMB ? "1" : "0",
     "mlook-hybrid", MlookHybrid ? "1" : "0",
     "key-look-left", Key_LookLeft,

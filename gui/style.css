@@ -334,10 +334,10 @@ input:hover,
 }
 
 /* ========================================================= */
-/* row link (text button, e.g. "Setup") */
+/* link button (text-only button styled as a link, e.g. "Setup", "Skip") */
 /* ========================================================= */
 
-.ko-RowLink {
+.ko-LinkBtn {
   background: none;
   border: none;
   padding: 0;
@@ -348,7 +348,7 @@ input:hover,
   cursor: pointer;
 }
 
-.ko-RowLink:hover {
+.ko-LinkBtn:hover {
   color: #fff;
 }
 

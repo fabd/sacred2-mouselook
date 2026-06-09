@@ -89,6 +89,22 @@ setupModal.addEventListener("click", (e) => {
   }
 });
 
+// Welcome modal (first run — offer to create a desktop shortcut)
+const welcomeModal = $id("welcomeModal");
+
+$id("btnCreateShortcut").addEventListener("click", () => {
+  window.chrome.webview.postMessage({ type: "create-shortcut" });
+  welcomeModal.classList.remove("is-active");
+});
+
+$id("btnSkipShortcut").addEventListener("click", () => {
+  welcomeModal.classList.remove("is-active");
+});
+
+$id("btnWelcomeClose").addEventListener("click", () => {
+  welcomeModal.classList.remove("is-active");
+});
+
 // Receive config from AHK and populate form fields
 window.chrome.webview.addEventListener("message", (e) => {
   const cfg = e.data;
@@ -109,6 +125,11 @@ window.chrome.webview.addEventListener("message", (e) => {
   setVal("key-combat-art", cfg["key-combat-art"]);
   setVal("key-vanity-cam", cfg["key-vanity-cam"]);
   setCheck("rune-master", cfg["rune-master"]);
+
+  // On first run (no INI yet) offer to create a desktop shortcut
+  if (cfg["first-run"] === "1") {
+    welcomeModal.classList.add("is-active");
+  }
 });
 
 // Update script button
