@@ -149,6 +149,62 @@
         color: var(--text-dim);
       }
 
+      /* Download */
+      .download-section {
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .download-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .download-version {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .download-version span {
+        color: var(--accent);
+      }
+
+      .download-assets {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .download-asset {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1.25rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        color: var(--text);
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: border-color 0.15s, background 0.15s;
+        text-decoration: none;
+      }
+
+      .download-asset:hover {
+        border-color: var(--accent);
+        background: #1f1f28;
+        text-decoration: none;
+      }
+
+      .download-asset-icon { font-size: 1.1rem; flex-shrink: 0; }
+      .download-asset-name { flex: 1; color: var(--text); }
+      .download-asset-size { color: var(--text-dim); font-size: 0.8rem; flex-shrink: 0; }
+
       /* Footer */
       footer {
         border-top: 1px solid var(--border);
@@ -171,14 +227,24 @@
           enhancements, with a user-friendly configurator.
         </p>
         <div class="badge-row">
-          <a class="badge badge--primary" href="https://www.nexusmods.com/sacred2remaster/mods/36" target="_blank">
-            ⬇ Download on NexusMods
-          </a>
           <a class="badge badge--secondary" href="https://github.com/fabd/sacred2-mouselook" target="_blank">
             View on GitHub
           </a>
+          <a class="badge badge--secondary" href="https://www.nexusmods.com/sacred2remaster/mods/36" target="_blank">
+            NexusMods page
+          </a>
         </div>
       </header>
+
+      <section class="download-section" id="download">
+        <div class="download-header">
+          <p class="download-version" id="download-version">
+            <span style="color:var(--text-dim);font-weight:400;font-size:0.875rem;">Loading release info…</span>
+          </p>
+          <a id="download-notes-link" href="https://github.com/fabd/sacred2-mouselook/releases" target="_blank" style="font-size:0.8rem;color:var(--text-dim);">View all releases →</a>
+        </div>
+        <div class="download-assets" id="download-assets"></div>
+      </section>
 
       <section class="screenshot-section">
         <img src="screenshot.png" alt="Better Mouselook Controls configurator" />
@@ -222,5 +288,55 @@
         </p>
       </footer>
     </div>
+    <script>
+      (function () {
+        var REPO = 'fabd/sacred2-mouselook';
+
+        function formatSize(bytes) {
+          if (bytes >= 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+          return Math.round(bytes / 1024) + ' KB';
+        }
+
+        function iconForName(name) {
+          if (name.endsWith('.exe')) return '⚙';
+          if (name.endsWith('.zip')) return '📦';
+          return '⬇';
+        }
+
+        function renderRelease(release) {
+          var versionEl = document.getElementById('download-version');
+          versionEl.innerHTML = 'Latest release: <span>' + release.tag_name + '</span>';
+
+          var notesLink = document.getElementById('download-notes-link');
+          notesLink.href = release.html_url;
+
+          var assetsEl = document.getElementById('download-assets');
+          assetsEl.innerHTML = '';
+          release.assets.forEach(function (asset) {
+            var a = document.createElement('a');
+            a.className = 'download-asset';
+            a.href = asset.browser_download_url;
+            a.innerHTML =
+              '<span class="download-asset-icon">' + iconForName(asset.name) + '</span>' +
+              '<span class="download-asset-name">' + (asset.label || asset.name) + '</span>' +
+              '<span class="download-asset-size">' + formatSize(asset.size) + '</span>';
+            assetsEl.appendChild(a);
+          });
+        }
+
+        function renderError() {
+          var versionEl = document.getElementById('download-version');
+          versionEl.innerHTML =
+            '<span style="color:var(--text-dim);font-weight:400;font-size:0.875rem;">' +
+            'Could not load release info. <a href="https://github.com/fabd/sacred2-mouselook/releases">View releases on GitHub →</a>' +
+            '</span>';
+        }
+
+        fetch('https://api.github.com/repos/' + REPO + '/releases/latest')
+          .then(function (r) { return r.json(); })
+          .then(renderRelease)
+          .catch(renderError);
+      }());
+    </script>
   </body>
 </html>
